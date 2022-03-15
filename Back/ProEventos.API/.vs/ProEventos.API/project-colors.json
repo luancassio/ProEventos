@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "ed1c3874-c2f5-4fc9-8ee9-ee154d47a65b": {
+      "ProjectGuid": "ed1c3874-c2f5-4fc9-8ee9-ee154d47a65b",
+      "DisplayName": "ProEventos.API",
+      "ColorIndex": 0
+    }
+  },
+  "NextColorIndex": 1
+}
