@@ -5,12 +5,12 @@ using System.Threading.Tasks;
 using System;
 
 namespace ProEventos.Application.Class {
-    public class EventoPalestrante : IPalestranteService {
+    public class PalestranteService: IPalestranteService {
 
         private readonly IGenericsPersistence _genericsPersistence;
         private readonly IPalestrantePersistence _palestrantePersistence;
 
-        public EventoPalestrante(IGenericsPersistence genericsPersistence, IPalestrantePersistence palestrantePersistence) {
+        public PalestranteService(IGenericsPersistence genericsPersistence, IPalestrantePersistence palestrantePersistence) {
 
             _genericsPersistence = genericsPersistence;
             _palestrantePersistence = palestrantePersistence; 

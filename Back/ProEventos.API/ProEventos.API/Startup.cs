@@ -5,8 +5,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using ProEventos.Application.Class;
+using ProEventos.Application.Interface;
+using ProEventos.Persistence.Class;
 using ProEventos.Persistence.Data;
-
+using ProEventos.Persistence.Interface;
 
 namespace ProEventos.API {
     public class Startup {
@@ -20,7 +23,17 @@ namespace ProEventos.API {
         public void ConfigureServices(IServiceCollection services) {
 
             services.AddDbContext<ProEventosContext>(opt => opt.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
-            services.AddControllers();
+            
+            // configuração para ignora os loops de relacionamento das classes
+            services.AddControllers().AddNewtonsoftJson(x => x.SerializerSettings
+            .ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+
+            services.AddScoped<IGenericsPersistence, GenericsPersistence>();
+            services.AddScoped<IEventoService, EventoService>();
+            services.AddScoped<IEventoPersistence, EventoPersistence>();
+            services.AddScoped<IPalestranteService, PalestranteService>();
+            services.AddScoped<IPalestrantePersistence, PalestrantePersistence>();
+
             services.AddCors();
             services.AddSwaggerGen(c => {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "ProEventos.API", Version = "v1" });

@@ -16,8 +16,21 @@ namespace ProEventos.Persistence.Data {
             /* colocando essa configuração ele consegue fazer a associação para junção das tabela
              eventos e palestrantes */
             modelBuilder.Entity<PalestranteEvento>().HasKey(
-                PE => new { PE.EventoId, PE.PalestranteId }
-                );
+                PE => new { PE.EventoId, PE.PalestranteId });
+
+
+            // configuração para ele deletar os dados de forma Cascade
+            //deletar informação das outra tabelas que ele tem relacionamento
+            modelBuilder.Entity<Evento>()
+                .HasMany(e => e.RedeSociais)
+                .WithOne(rs => rs.Evento)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Palestrante>()
+                .HasMany(e => e.RedeSociais)
+                .WithOne(rs => rs.Palestrante)
+                .OnDelete(DeleteBehavior.Cascade);
+
         }
 
     }

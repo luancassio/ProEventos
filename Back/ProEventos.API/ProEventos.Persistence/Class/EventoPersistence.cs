@@ -5,11 +5,11 @@ using System.Linq;
 using System.Threading.Tasks;
 
 namespace ProEventos.Persistence.Interface {
-    public class EventosPersistence : IEventoPersistence {
+    public class EventoPersistence : IEventoPersistence {
 
         private readonly ProEventosContext _context;
 
-        public EventosPersistence(ProEventosContext context) {
+        public EventoPersistence(ProEventosContext context) {
             _context = context;
         }
         public async Task<Evento[]> GetAllEventosAsync(bool includePalestrantes = false) {
@@ -23,7 +23,7 @@ namespace ProEventos.Persistence.Interface {
                 query = query.Include(pe => pe.PalestrantesEventos)
                     .ThenInclude(p => p.Palestrante);
             }
-            query = query.OrderBy(e => e.Id);
+            query = query.AsNoTracking().OrderBy(e => e.Id);
 
             return await query.ToArrayAsync();
         }
@@ -41,7 +41,7 @@ namespace ProEventos.Persistence.Interface {
             }
 
                                             
-            query = query.OrderBy(e => e.Id) // vai retorna todos temas que foi passado pelo parametro
+            query = query.AsNoTracking().OrderBy(e => e.Id) // vai retorna todos temas que foi passado pelo parametro
                 .Where(e => e.Tema.ToLower().Contains(tema.ToLower()));
 
             return await query.ToArrayAsync();
@@ -58,7 +58,7 @@ namespace ProEventos.Persistence.Interface {
                     .ThenInclude(p => p.Palestrante);
             }
 
-            query = query.OrderBy(e => e.Id) 
+            query = query.AsNoTracking().OrderBy(e => e.Id) 
                 .Where(e => e.Id == eventoId);// vai retorna apeenas um
 
             return await query.FirstOrDefaultAsync();
