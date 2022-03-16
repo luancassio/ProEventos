@@ -76,3 +76,9 @@ C:\Users\lcassio\Desktop\ProEventos\Back\ProEventos.API\ProEventos.API\obj\Debug
 C:\Users\lcassio\Desktop\ProEventos\Back\ProEventos.API\ProEventos.API\obj\Debug\net5.0\ref\ProEventos.API.dll
 C:\Users\lcassio\Desktop\ProEventos\Back\ProEventos.API\ProEventos.API\obj\Debug\net5.0\ProEventos.API.pdb
 C:\Users\lcassio\Desktop\ProEventos\Back\ProEventos.API\ProEventos.API\obj\Debug\net5.0\ProEventos.API.genruntimeconfig.cache
+C:\Users\lcassio\Desktop\ProEventos\Back\ProEventos.API\ProEventos.API\bin\Debug\net5.0\ProEventos.Application.dll
+C:\Users\lcassio\Desktop\ProEventos\Back\ProEventos.API\ProEventos.API\bin\Debug\net5.0\ProEventos.Domain.dll
+C:\Users\lcassio\Desktop\ProEventos\Back\ProEventos.API\ProEventos.API\bin\Debug\net5.0\ProEventos.Persistence.dll
+C:\Users\lcassio\Desktop\ProEventos\Back\ProEventos.API\ProEventos.API\bin\Debug\net5.0\ProEventos.Application.pdb
+C:\Users\lcassio\Desktop\ProEventos\Back\ProEventos.API\ProEventos.API\bin\Debug\net5.0\ProEventos.Domain.pdb
+C:\Users\lcassio\Desktop\ProEventos\Back\ProEventos.API\ProEventos.API\bin\Debug\net5.0\ProEventos.Persistence.pdb
