@@ -5,7 +5,22 @@
       "ProjectGuid": "ed1c3874-c2f5-4fc9-8ee9-ee154d47a65b",
       "DisplayName": "ProEventos.API",
       "ColorIndex": 0
+    },
+    "869bc1b0-9b57-4570-915a-fe99359a9bcd": {
+      "ProjectGuid": "869bc1b0-9b57-4570-915a-fe99359a9bcd",
+      "DisplayName": "ProEventos.Persistence",
+      "ColorIndex": 1
+    },
+    "0a1d1660-dbb4-4184-8c35-997c03bcd8d9": {
+      "ProjectGuid": "0a1d1660-dbb4-4184-8c35-997c03bcd8d9",
+      "DisplayName": "ProEventos.Domain",
+      "ColorIndex": 2
+    },
+    "dabdd83f-8171-485b-9155-8a76ac23b144": {
+      "ProjectGuid": "dabdd83f-8171-485b-9155-8a76ac23b144",
+      "DisplayName": "ProEventos.Application",
+      "ColorIndex": 3
     }
   },
-  "NextColorIndex": 1
+  "NextColorIndex": 4
 }
