@@ -1,0 +1,88 @@
+C:\Users\lcassio\Desktop\Api .NetCore\ProEventos.API\ProEventos.API\bin\Debug\net5.0\appsettings.Development.json
+C:\Users\lcassio\Desktop\Api .NetCore\ProEventos.API\ProEventos.API\bin\Debug\net5.0\appsettings.json
+C:\Users\lcassio\Desktop\Api .NetCore\ProEventos.API\ProEventos.API\bin\Debug\net5.0\ProEventos.API.exe
+C:\Users\lcassio\Desktop\Api .NetCore\ProEventos.API\ProEventos.API\bin\Debug\net5.0\ProEventos.API.deps.json
+C:\Users\lcassio\Desktop\Api .NetCore\ProEventos.API\ProEventos.API\bin\Debug\net5.0\ProEventos.API.runtimeconfig.json
+C:\Users\lcassio\Desktop\Api .NetCore\ProEventos.API\ProEventos.API\bin\Debug\net5.0\ProEventos.API.runtimeconfig.dev.json
+C:\Users\lcassio\Desktop\Api .NetCore\ProEventos.API\ProEventos.API\bin\Debug\net5.0\ProEventos.API.dll
+C:\Users\lcassio\Desktop\Api .NetCore\ProEventos.API\ProEventos.API\bin\Debug\net5.0\ref\ProEventos.API.dll
+C:\Users\lcassio\Desktop\Api .NetCore\ProEventos.API\ProEventos.API\bin\Debug\net5.0\ProEventos.API.pdb
+C:\Users\lcassio\Desktop\Api .NetCore\ProEventos.API\ProEventos.API\bin\Debug\net5.0\Microsoft.OpenApi.dll
+C:\Users\lcassio\Desktop\Api .NetCore\ProEventos.API\ProEventos.API\bin\Debug\net5.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\lcassio\Desktop\Api .NetCore\ProEventos.API\ProEventos.API\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\lcassio\Desktop\Api .NetCore\ProEventos.API\ProEventos.API\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\lcassio\Desktop\Api .NetCore\ProEventos.API\ProEventos.API\obj\Debug\net5.0\ProEventos.API.csproj.AssemblyReference.cache
+C:\Users\lcassio\Desktop\Api .NetCore\ProEventos.API\ProEventos.API\obj\Debug\net5.0\ProEventos.API.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\lcassio\Desktop\Api .NetCore\ProEventos.API\ProEventos.API\obj\Debug\net5.0\ProEventos.API.AssemblyInfoInputs.cache
+C:\Users\lcassio\Desktop\Api .NetCore\ProEventos.API\ProEventos.API\obj\Debug\net5.0\ProEventos.API.AssemblyInfo.cs
+C:\Users\lcassio\Desktop\Api .NetCore\ProEventos.API\ProEventos.API\obj\Debug\net5.0\ProEventos.API.csproj.CoreCompileInputs.cache
+C:\Users\lcassio\Desktop\Api .NetCore\ProEventos.API\ProEventos.API\obj\Debug\net5.0\ProEventos.API.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\lcassio\Desktop\Api .NetCore\ProEventos.API\ProEventos.API\obj\Debug\net5.0\ProEventos.API.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\lcassio\Desktop\Api .NetCore\ProEventos.API\ProEventos.API\obj\Debug\net5.0\scopedcss\bundle\ProEventos.API.styles.css
+C:\Users\lcassio\Desktop\Api .NetCore\ProEventos.API\ProEventos.API\obj\Debug\net5.0\staticwebassets\ProEventos.API.StaticWebAssets.Manifest.cache
+C:\Users\lcassio\Desktop\Api .NetCore\ProEventos.API\ProEventos.API\obj\Debug\net5.0\ProEventos.API.RazorTargetAssemblyInfo.cache
+C:\Users\lcassio\Desktop\Api .NetCore\ProEventos.API\ProEventos.API\obj\Debug\net5.0\ProEventos.API.csproj.CopyComplete
+C:\Users\lcassio\Desktop\Api .NetCore\ProEventos.API\ProEventos.API\obj\Debug\net5.0\ProEventos.API.dll
+C:\Users\lcassio\Desktop\Api .NetCore\ProEventos.API\ProEventos.API\obj\Debug\net5.0\ref\ProEventos.API.dll
+C:\Users\lcassio\Desktop\Api .NetCore\ProEventos.API\ProEventos.API\obj\Debug\net5.0\ProEventos.API.pdb
+C:\Users\lcassio\Desktop\Api .NetCore\ProEventos.API\ProEventos.API\obj\Debug\net5.0\ProEventos.API.genruntimeconfig.cache
+C:\Users\lcassio\Desktop\Api .NetCore\ProEventos.API\ProEventos.API\bin\Debug\net5.0\appsetting.Development.Development.json
+C:\Users\lcassio\Desktop\Api .NetCore\ProEventos.API\ProEventos.API\bin\Debug\net5.0\appsetting.Development.json
+C:\Users\lcassio\Desktop\Api .NetCore\ProEventos.API\ProEventos.API\bin\Debug\net5.0\Humanizer.dll
+C:\Users\lcassio\Desktop\Api .NetCore\ProEventos.API\ProEventos.API\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.dll
+C:\Users\lcassio\Desktop\Api .NetCore\ProEventos.API\ProEventos.API\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\lcassio\Desktop\Api .NetCore\ProEventos.API\ProEventos.API\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Design.dll
+C:\Users\lcassio\Desktop\Api .NetCore\ProEventos.API\ProEventos.API\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Users\lcassio\Desktop\Api .NetCore\ProEventos.API\ProEventos.API\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Relational.Design.dll
+C:\Users\lcassio\Desktop\Api .NetCore\ProEventos.API\ProEventos.API\bin\Debug\net5.0\Npgsql.dll
+C:\Users\lcassio\Desktop\Api .NetCore\ProEventos.API\ProEventos.API\bin\Debug\net5.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
+C:\Users\lcassio\Desktop\Api .NetCore\ProEventos.API\ProEventos.API\bin\Debug\net5.0\Npgsql.EntityFrameworkCore.PostgreSQL.Design.dll
+C:\Users\lcassio\Desktop\ProEventos\Back\ProEventos.API\ProEventos.API\bin\Debug\net5.0\appsetting.Development.Development.json
+C:\Users\lcassio\Desktop\ProEventos\Back\ProEventos.API\ProEventos.API\bin\Debug\net5.0\appsetting.Development.json
+C:\Users\lcassio\Desktop\ProEventos\Back\ProEventos.API\ProEventos.API\bin\Debug\net5.0\appsettings.Development.json
+C:\Users\lcassio\Desktop\ProEventos\Back\ProEventos.API\ProEventos.API\bin\Debug\net5.0\appsettings.json
+C:\Users\lcassio\Desktop\ProEventos\Back\ProEventos.API\ProEventos.API\bin\Debug\net5.0\ProEventos.API.exe
+C:\Users\lcassio\Desktop\ProEventos\Back\ProEventos.API\ProEventos.API\bin\Debug\net5.0\ProEventos.API.deps.json
+C:\Users\lcassio\Desktop\ProEventos\Back\ProEventos.API\ProEventos.API\bin\Debug\net5.0\ProEventos.API.runtimeconfig.json
+C:\Users\lcassio\Desktop\ProEventos\Back\ProEventos.API\ProEventos.API\bin\Debug\net5.0\ProEventos.API.runtimeconfig.dev.json
+C:\Users\lcassio\Desktop\ProEventos\Back\ProEventos.API\ProEventos.API\bin\Debug\net5.0\ProEventos.API.dll
+C:\Users\lcassio\Desktop\ProEventos\Back\ProEventos.API\ProEventos.API\bin\Debug\net5.0\ref\ProEventos.API.dll
+C:\Users\lcassio\Desktop\ProEventos\Back\ProEventos.API\ProEventos.API\bin\Debug\net5.0\ProEventos.API.pdb
+C:\Users\lcassio\Desktop\ProEventos\Back\ProEventos.API\ProEventos.API\bin\Debug\net5.0\Humanizer.dll
+C:\Users\lcassio\Desktop\ProEventos\Back\ProEventos.API\ProEventos.API\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.dll
+C:\Users\lcassio\Desktop\ProEventos\Back\ProEventos.API\ProEventos.API\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\lcassio\Desktop\ProEventos\Back\ProEventos.API\ProEventos.API\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Design.dll
+C:\Users\lcassio\Desktop\ProEventos\Back\ProEventos.API\ProEventos.API\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Users\lcassio\Desktop\ProEventos\Back\ProEventos.API\ProEventos.API\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Relational.Design.dll
+C:\Users\lcassio\Desktop\ProEventos\Back\ProEventos.API\ProEventos.API\bin\Debug\net5.0\Microsoft.OpenApi.dll
+C:\Users\lcassio\Desktop\ProEventos\Back\ProEventos.API\ProEventos.API\bin\Debug\net5.0\Npgsql.dll
+C:\Users\lcassio\Desktop\ProEventos\Back\ProEventos.API\ProEventos.API\bin\Debug\net5.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
+C:\Users\lcassio\Desktop\ProEventos\Back\ProEventos.API\ProEventos.API\bin\Debug\net5.0\Npgsql.EntityFrameworkCore.PostgreSQL.Design.dll
+C:\Users\lcassio\Desktop\ProEventos\Back\ProEventos.API\ProEventos.API\bin\Debug\net5.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\lcassio\Desktop\ProEventos\Back\ProEventos.API\ProEventos.API\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\lcassio\Desktop\ProEventos\Back\ProEventos.API\ProEventos.API\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\lcassio\Desktop\ProEventos\Back\ProEventos.API\ProEventos.API\obj\Debug\net5.0\ProEventos.API.csproj.AssemblyReference.cache
+C:\Users\lcassio\Desktop\ProEventos\Back\ProEventos.API\ProEventos.API\obj\Debug\net5.0\ProEventos.API.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\lcassio\Desktop\ProEventos\Back\ProEventos.API\ProEventos.API\obj\Debug\net5.0\ProEventos.API.AssemblyInfoInputs.cache
+C:\Users\lcassio\Desktop\ProEventos\Back\ProEventos.API\ProEventos.API\obj\Debug\net5.0\ProEventos.API.AssemblyInfo.cs
+C:\Users\lcassio\Desktop\ProEventos\Back\ProEventos.API\ProEventos.API\obj\Debug\net5.0\ProEventos.API.csproj.CoreCompileInputs.cache
+C:\Users\lcassio\Desktop\ProEventos\Back\ProEventos.API\ProEventos.API\obj\Debug\net5.0\ProEventos.API.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\lcassio\Desktop\ProEventos\Back\ProEventos.API\ProEventos.API\obj\Debug\net5.0\ProEventos.API.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\lcassio\Desktop\ProEventos\Back\ProEventos.API\ProEventos.API\obj\Debug\net5.0\scopedcss\bundle\ProEventos.API.styles.css
+C:\Users\lcassio\Desktop\ProEventos\Back\ProEventos.API\ProEventos.API\obj\Debug\net5.0\staticwebassets\ProEventos.API.StaticWebAssets.Manifest.cache
+C:\Users\lcassio\Desktop\ProEventos\Back\ProEventos.API\ProEventos.API\obj\Debug\net5.0\ProEventos.API.RazorTargetAssemblyInfo.cache
+C:\Users\lcassio\Desktop\ProEventos\Back\ProEventos.API\ProEventos.API\obj\Debug\net5.0\ProEventos.API.csproj.CopyComplete
+C:\Users\lcassio\Desktop\ProEventos\Back\ProEventos.API\ProEventos.API\obj\Debug\net5.0\ProEventos.API.dll
+C:\Users\lcassio\Desktop\ProEventos\Back\ProEventos.API\ProEventos.API\obj\Debug\net5.0\ref\ProEventos.API.dll
+C:\Users\lcassio\Desktop\ProEventos\Back\ProEventos.API\ProEventos.API\obj\Debug\net5.0\ProEventos.API.pdb
+C:\Users\lcassio\Desktop\ProEventos\Back\ProEventos.API\ProEventos.API\obj\Debug\net5.0\ProEventos.API.genruntimeconfig.cache
+C:\Users\lcassio\Desktop\ProEventos\Back\ProEventos.API\ProEventos.API\bin\Debug\net5.0\ProEventos.Application.dll
+C:\Users\lcassio\Desktop\ProEventos\Back\ProEventos.API\ProEventos.API\bin\Debug\net5.0\ProEventos.Domain.dll
+C:\Users\lcassio\Desktop\ProEventos\Back\ProEventos.API\ProEventos.API\bin\Debug\net5.0\ProEventos.Persistence.dll
+C:\Users\lcassio\Desktop\ProEventos\Back\ProEventos.API\ProEventos.API\bin\Debug\net5.0\ProEventos.Application.pdb
+C:\Users\lcassio\Desktop\ProEventos\Back\ProEventos.API\ProEventos.API\bin\Debug\net5.0\ProEventos.Domain.pdb
+C:\Users\lcassio\Desktop\ProEventos\Back\ProEventos.API\ProEventos.API\bin\Debug\net5.0\ProEventos.Persistence.pdb
+C:\Users\lcassio\Desktop\ProEventos\Back\ProEventos.API\ProEventos.API\bin\Debug\net5.0\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\lcassio\Desktop\ProEventos\Back\ProEventos.API\ProEventos.API\bin\Debug\net5.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+C:\Users\lcassio\Desktop\ProEventos\Back\ProEventos.API\ProEventos.API\bin\Debug\net5.0\Newtonsoft.Json.dll
+C:\Users\lcassio\Desktop\ProEventos\Back\ProEventos.API\ProEventos.API\bin\Debug\net5.0\Newtonsoft.Json.Bson.dll

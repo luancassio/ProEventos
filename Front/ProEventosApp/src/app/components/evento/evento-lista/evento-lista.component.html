@@ -1,0 +1,66 @@
+<div class="card rounded shadow-sm p-3">
+    <div class="input-group mb-3">
+      <input type="text" class="form-control" placeholder="Pesquise pelo Tema ou Local" [(ngModel)]="filtroPesquisa">
+      <a class="btn btn-success"  tooltip="Adicinar novo evento" [routerLink]="'/eventos/detalhe'">
+        <i class="fa-solid fa-plus"></i>
+        <b class="m-3 d-none d-sm-inline">Novo</b>
+      </a>
+    </div>
+    <table class="table table-striped">
+      <thead class="table-dark">
+        <tr>
+          <th class="d-none d-md-table-cell">
+            <button class="btn btn-outline-light btn-sm" id="btn-eye" 
+            (click)="esconderImgame = !esconderImgame">
+            <i ngClass="{{esconderImgame ? 'fa-solid fa-eye' : 'fa-solid fa-eye-slash'}}"></i>
+            <!-- <i class="fa-solid fa-eye" *ngIf="esconderImgame; else esconder"></i>
+              <ng-template #esconder><i class="fa-solid fa-eye-slash"></i></ng-template> -->
+            </button>
+          </th>
+          <th class="d-none d-md-table-cell">Local</th>
+          <th>Data</th>
+          <th>Tema</th>
+          <th class="d-none d-md-table-cell">Qtd. Pessoa</th>
+          <th class="d-none d-md-table-cell">Lote</th>
+          <th>Opções</th>
+        </tr>
+      </thead>
+      <tbody *ngIf="eventos && eventos.length">
+        <tr *ngFor="let item of eventosFilter;">
+          <td class="d-none d-md-table-cell"> 
+            <img  src="/assets/imagem/{{item.imageUrl}}"  width="120" [collapse]="!esconderImgame" [isAnimated]="true">
+          </td>
+          <td class="d-none d-md-table-cell">{{item.local}}</td>
+          <td>{{item.dataEvento | date}}</td>
+          <td>{{item.tema}}</td>
+          <td class="d-none d-md-table-cell">{{item.qtdPessoa}}</td>
+          <td class="d-none d-md-table-cell">{{item.lotes[0].nome | uppercase}}</td>
+          <td>
+            <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+              <button type="button" class="btn btn-info btn-sm" tooltip="Editar" (click)="detalheEvento(item.id)"><i class="fa fa-edit"></i></button>
+              <button type="button" class="btn btn-danger btn-sm" tooltip="Excluir" (click)="openModal(template)"><i class="fa fa-trash"></i></button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+      
+      <tfoot *ngIf="!eventos.length">
+        <tr>
+          <td colspan="8" class="text-center">
+            <h4>
+              Nenhum evento encontrado.
+            </h4>
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+  
+  <!-- Modal -->
+  <ng-template #template>
+    <div class="modal-body text-center">
+      <p>Tem certeza que quer deletar esse Evento?</p>
+      <button type="button" class="btn btn-default" (click)="confirmar()" >Sim</button>
+      <button type="button" class="btn btn-primary" (click)="recusar()" >Não</button>
+    </div>
+  </ng-template>
