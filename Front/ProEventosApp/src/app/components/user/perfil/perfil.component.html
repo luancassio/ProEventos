@@ -4,7 +4,7 @@
     [iconClass]="'fa-solid fa-user'">
 </app-titulo>
 <div class="card rounded shadow-sm">
-    <form>
+    <form [formGroup]="perfilForm">
         <div class="row p-3">
             <div class="col-lg-3 pt-1">
                 <div class="card mb-3">
@@ -48,7 +48,7 @@
                     </div>
                     <div class="form-group col-3">
                         <label>Título</label>
-                        <select class="form-control">
+                        <select class="form-control" formControlName="title" [ngClass]="{'is-invalid': displayMessage.title }">
                             <option value=""></option>
                             <option value="0">Não Quero</option>
                             <option value="Senhorita">Tecnólogo(a)</option>
@@ -59,38 +59,58 @@
                             <option value="Senhorita">Doutor(a)</option>
                             <option value="Senhorita">Pós Doc</option>
                         </select>
+                        <div *ngIf="displayMessage.title" class="invalid-feedback">
+                            <span [innerHTML]="displayMessage.title"></span>
+                        </div>
                     </div>
                     <div class="form-group col">
                         <label>Primeiro Nome</label>
-                        <input type="text" class="form-control"/>
+                        <input type="text" class="form-control" formControlName="firstName" [ngClass]="{'is-invalid': displayMessage.firstName }"/>
+                        <div *ngIf="displayMessage.firstName" class="invalid-feedback">
+                            <span [innerHTML]="displayMessage.firstName"></span>
+                        </div>
                         
                     </div>
                     <div class="form-group col">
                         <label>Último nome</label>
-                        <input type="text" class="form-control"/>
-                        
+                        <input type="text" class="form-control" formControlName="lastName" [ngClass]="{'is-invalid': displayMessage.lastName }"/>
+                        <div *ngIf="displayMessage.lastName" class="invalid-feedback">
+                            <span [innerHTML]="displayMessage.lastName"></span>
+                        </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="form-group col-sm-5">
                         <label>E-mail</label>
-                        <input type="text" class="form-control" />
+                        <input type="text" class="form-control" formControlName="email" [ngClass]="{'is-invalid': displayMessage.email }"/>
+                        <div *ngIf="displayMessage.email" class="invalid-feedback">
+                            <span [innerHTML]="displayMessage.email"></span>
+                        </div>
                     </div>
                     <div class="form-group col-sm-4">
                         <label>Telefone</label>
-                        <input type="text" class="form-control" />
+                        <input type="text" class="form-control" formControlName="telephone" [ngClass]="{'is-invalid': displayMessage.telephone }"/>
+                        <div *ngIf="displayMessage.telephone" class="invalid-feedback">
+                            <span [innerHTML]="displayMessage.telephone"></span>
+                        </div>
                     </div>
                     <div class="form-group col-sm">
                         <label>Função</label>
-                        <select class="form-control">
+                        <select class="form-control" formControlName="funcOptions" [ngClass]="{'is-invalid': displayMessage.funcOptions }">
                             <option value=""></option>
                             <option value="Participante">Participante</option>
                             <option value="Palestrante">Palestrante</option>
                         </select>
+                        <div *ngIf="displayMessage.funcOptions" class="invalid-feedback">
+                            <span [innerHTML]="displayMessage.funcOptions"></span>
+                        </div>
                     </div>
                     <form-group class="col-12">
                         <label>Descrição</label>
-                        <input type="text" class="form-control" />
+                        <input type="text" class="form-control" formControlName="description" [ngClass]="{'is-invalid': displayMessage.description }"/>
+                        <div *ngIf="displayMessage.description" class="invalid-feedback">
+                            <span [innerHTML]="displayMessage.description"></span>
+                        </div>
                     </form-group>
                 </div>
                 <div>
@@ -100,21 +120,27 @@
                 <div class="row">
                     <div class="form-group col-sm">
                         <label>Senha</label>
-                        <input type="password" class="form-control" />
+                        <input type="password" class="form-control" formControlName="password" [ngClass]="{'is-invalid': displayMessage.password }"/>
+                        <div *ngIf="displayMessage.password" class="invalid-feedback">
+                            <span [innerHTML]="displayMessage.password"></span>
+                        </div>
                     </div>
                     <div class="form-group col-sm">
                         <label>Confirmar Senha</label>
-                        <input type="password" class="form-control" />
+                        <input type="password" class="form-control" formControlName="confirmPassword" [ngClass]="{'is-invalid': displayMessage.confirmPassword }"/>
+                        <div *ngIf="displayMessage.confirmPassword" class="invalid-feedback">
+                            <span [innerHTML]="displayMessage.confirmPassword"></span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="card-footer">
             <div class="d-flex justify-content-between">
-                <button class="btn btn-outline-danger mr-auto border">
+                <button class="btn btn-outline-danger mr-auto border" (click)="resetForm()">
                     Cancelar Alteração
                 </button>
-                <button class="btn btn-success">
+                <button class="btn btn-success" [disabled]="!perfilForm.valid">
                     <span class="spinner-border spinner-border-sm mr-1"></span>
                     Salvar Perfil
                 </button>

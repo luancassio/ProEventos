@@ -26,7 +26,7 @@ import { EventoListaComponent } from './components/evento/evento-lista/evento-li
 import { UserComponent } from './components/user/user.component';
 import { LoginComponent } from './components/user/login/login.component';
 import { RegistrationComponent } from './components/user/registration/registration.component';
-import { FormBaseComponent } from './shared/components/form-base/form-base.component';
+import { CustomFormsModule } from 'ng2-validation'
 
 
 @NgModule({
@@ -63,7 +63,8 @@ import { FormBaseComponent } from './shared/components/form-base/form-base.compo
       progressAnimation: 'increasing'
     }),
     FormsModule,
-    ReactiveFormsModule
+    CustomFormsModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

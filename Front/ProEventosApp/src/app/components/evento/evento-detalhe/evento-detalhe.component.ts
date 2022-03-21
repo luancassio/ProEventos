@@ -9,9 +9,9 @@ import { FormBaseComponent } from 'src/app/shared/components/form-base/form-base
 })
 export class EventoDetalheComponent extends FormBaseComponent implements OnInit, AfterViewInit {
 
-  @ViewChildren(FormControlName, { read: ElementRef }) formInputElements: ElementRef[];
+  @ViewChildren(FormControlName, { read: ElementRef }) formInputElements!: ElementRef[];
 
-  eventoForm: FormGroup;
+  eventoForm!: FormGroup;
 
   constructor(private fb: FormBuilder) {
     super();
@@ -68,6 +68,9 @@ export class EventoDetalheComponent extends FormBaseComponent implements OnInit,
 
   ngAfterViewInit(): void {
     super.configurarValidacaoFormularioBase(this.formInputElements, this.eventoForm);
+  }
+  public resetForm(): void{
+    this.eventoForm.reset();
   }
 
 }
