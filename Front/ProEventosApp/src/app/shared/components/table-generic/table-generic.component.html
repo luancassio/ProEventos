@@ -1,0 +1,31 @@
+
+<table class="table table-striped">
+  <thead class="table-dark">
+    <tr>
+      <th *ngFor="let header of headers">
+        <ng-container
+          *ngTemplateOutlet="header">
+        </ng-container>
+      </th>
+    </tr>
+  </thead>
+  <tbody *ngIf="dados && dados.length">
+    <tr *ngFor="let dadosLinha of dados">
+      <td *ngFor="let coluna of colunas">
+        <ng-container
+          *ngTemplateOutlet="coluna; context: { dadosLinha }">
+        </ng-container>
+      </td>
+    </tr>
+  </tbody>
+  
+  <tfoot *ngIf="!dados.length">
+    <tr>
+      <td colspan="8" class="text-center">
+        <h4>
+          Nenhum evento encontrado.
+        </h4>
+      </td>
+    </tr>
+  </tfoot>
+</table>

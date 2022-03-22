@@ -6,15 +6,58 @@
         <b class="m-3 d-none d-sm-inline">Novo</b>
       </a>
     </div>
-    <table class="table table-striped">
+    <app-table-generic [dados]="eventos">
+
+      <ng-template #header>
+          <button class="btn btn-outline-light btn-sm" id="btn-eye" (click)="esconderImgame = !esconderImgame">
+            <i ngClass="{{esconderImgame ? 'fa-solid fa-eye' : 'fa-solid fa-eye-slash'}}"></i>
+          </button>
+      </ng-template>
+      <ng-template #coluna let-item="dadosLinha">
+          <img  src="/assets/imagem/{{item.imageUrl}}" width="120" [collapse]="!esconderImgame" [isAnimated]="true">
+      </ng-template>
+      
+      <ng-template #header>Local</ng-template>
+      <ng-template #coluna let-item="dadosLinha">
+          {{item.local}}
+      </ng-template>
+  
+      <ng-template #header>Data</ng-template>
+      <ng-template #coluna let-item="dadosLinha">
+        {{item.dataEvento}}
+      </ng-template>
+
+  
+      <ng-template #header>Tema</ng-template>
+      <ng-template #coluna let-item="dadosLinha">
+        {{item.tema}}
+      </ng-template>
+      
+      <ng-template #header>Qtd. Pessoa</ng-template>
+      <ng-template #coluna let-item="dadosLinha">
+        {{item.qtdPessoa}}
+      </ng-template>
+
+      <ng-template #header>Lote</ng-template>
+      <ng-template #coluna let-item="dadosLinha">
+        {{item.lotes}}
+      </ng-template>
+
+      <ng-template #header>Opçoes</ng-template>
+      <ng-template #coluna let-item="dadosLinha">
+        <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+          <button type="button" class="btn btn-info btn-sm" tooltip="Editar" (click)="detalheEvento(item.id)"><i class="fa fa-edit"></i></button>
+          <button type="button" class="btn btn-danger btn-sm" tooltip="Excluir" (click)="openModal(template)"><i class="fa fa-trash"></i></button>
+        </div>
+      </ng-template>
+    </app-table-generic>
+    <!-- <table class="table table-striped">
       <thead class="table-dark">
         <tr>
           <th class="d-none d-md-table-cell">
             <button class="btn btn-outline-light btn-sm" id="btn-eye" 
             (click)="esconderImgame = !esconderImgame">
             <i ngClass="{{esconderImgame ? 'fa-solid fa-eye' : 'fa-solid fa-eye-slash'}}"></i>
-            <!-- <i class="fa-solid fa-eye" *ngIf="esconderImgame; else esconder"></i>
-              <ng-template #esconder><i class="fa-solid fa-eye-slash"></i></ng-template> -->
             </button>
           </th>
           <th class="d-none d-md-table-cell">Local</th>
@@ -53,7 +96,7 @@
           </td>
         </tr>
       </tfoot>
-    </table>
+    </table> -->
   </div>
   
   <!-- Modal -->

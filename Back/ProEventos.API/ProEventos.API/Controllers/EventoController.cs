@@ -7,6 +7,7 @@ using System.Linq;
 using ProEventos.Application.Interface;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
+using ProEventos.API.Dto;
 
 namespace ProEventos.API.Controllers {
 
@@ -26,7 +27,22 @@ namespace ProEventos.API.Controllers {
                 if (eventos == null) {
                     return NotFound("Nenhum evento foi encontrado!");
                 }
-                return Ok(eventos);
+                var eventoRetorno = new List<EventoDto>();
+                foreach (var evento in eventos) {
+                    eventoRetorno.Add(new EventoDto() {
+                        Id =  evento.Id,
+                        Local = evento.Local,
+                        DataEvento = evento.DataEvento.ToString(),
+                        Tema =  evento.Tema,
+                        QtdPessoa = evento.QtdPessoa,
+                        ImageUrl = evento.ImageUrl,
+                        Telefone = evento.Telefone,
+                        Email = evento.Email,
+
+                    });
+                }
+
+                return Ok(eventoRetorno);
 
             } catch (Exception ex) {
 

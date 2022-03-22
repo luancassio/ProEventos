@@ -27,6 +27,7 @@ import { UserComponent } from './components/user/user.component';
 import { LoginComponent } from './components/user/login/login.component';
 import { RegistrationComponent } from './components/user/registration/registration.component';
 import { CustomFormsModule } from 'ng2-validation'
+import { TableGenericComponent } from './shared/components/table-generic/table-generic.component';
 
 
 @NgModule({
@@ -44,6 +45,7 @@ import { CustomFormsModule } from 'ng2-validation'
     UserComponent,
     LoginComponent,
     RegistrationComponent,
+    TableGenericComponent
   ],
   imports: [
     BrowserModule,
