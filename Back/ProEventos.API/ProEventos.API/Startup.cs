@@ -10,6 +10,7 @@ using ProEventos.Application.Interface;
 using ProEventos.Persistence.Class;
 using ProEventos.Persistence.Data;
 using ProEventos.Persistence.Interface;
+using System;
 
 namespace ProEventos.API {
     public class Startup {
@@ -27,7 +28,7 @@ namespace ProEventos.API {
             // configuração para ignora os loops de relacionamento das classes
             services.AddControllers().AddNewtonsoftJson(x => x.SerializerSettings
             .ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
-
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddScoped<IGenericsPersistence, GenericsPersistence>();
             services.AddScoped<IEventoService, EventoService>();
             services.AddScoped<IEventoPersistence, EventoPersistence>();

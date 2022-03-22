@@ -86,3 +86,9 @@ C:\Users\lcassio\Desktop\ProEventos\Back\ProEventos.API\ProEventos.API\bin\Debug
 C:\Users\lcassio\Desktop\ProEventos\Back\ProEventos.API\ProEventos.API\bin\Debug\net5.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 C:\Users\lcassio\Desktop\ProEventos\Back\ProEventos.API\ProEventos.API\bin\Debug\net5.0\Newtonsoft.Json.dll
 C:\Users\lcassio\Desktop\ProEventos\Back\ProEventos.API\ProEventos.API\bin\Debug\net5.0\Newtonsoft.Json.Bson.dll
+C:\Users\lcassio\Desktop\ProEventos\Back\ProEventos.API\ProEventos.API\bin\Debug\net5.0\AutoMapper.dll
+C:\Users\lcassio\Desktop\ProEventos\Back\ProEventos.API\ProEventos.API\bin\Debug\net5.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\lcassio\Desktop\ProEventos\Back\ProEventos.API\ProEventos.API\bin\Debug\net5.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\lcassio\Desktop\ProEventos\Back\ProEventos.API\ProEventos.API\bin\Debug\net5.0\Microsoft.Extensions.Options.dll
+C:\Users\lcassio\Desktop\ProEventos\Back\ProEventos.API\ProEventos.API\bin\Debug\net5.0\Microsoft.Extensions.Primitives.dll
+C:\Users\lcassio\Desktop\ProEventos\Back\ProEventos.API\ProEventos.API\bin\Debug\net5.0\System.Runtime.CompilerServices.Unsafe.dll

@@ -7,7 +7,7 @@ using System.Linq;
 using ProEventos.Application.Interface;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
-using ProEventos.API.Dto;
+using ProEventos.Application.Class.Dto;
 
 namespace ProEventos.API.Controllers {
 
@@ -25,24 +25,10 @@ namespace ProEventos.API.Controllers {
             try {
                 var eventos = await _eventoService.GetAllEventosAsync(true);
                 if (eventos == null) {
-                    return NotFound("Nenhum evento foi encontrado!");
+                    return NoContent();
                 }
-                var eventoRetorno = new List<EventoDto>();
-                foreach (var evento in eventos) {
-                    eventoRetorno.Add(new EventoDto() {
-                        Id =  evento.Id,
-                        Local = evento.Local,
-                        DataEvento = evento.DataEvento.ToString(),
-                        Tema =  evento.Tema,
-                        QtdPessoa = evento.QtdPessoa,
-                        ImageUrl = evento.ImageUrl,
-                        Telefone = evento.Telefone,
-                        Email = evento.Email,
-
-                    });
-                }
-
-                return Ok(eventoRetorno);
+          
+                return Ok(eventos);
 
             } catch (Exception ex) {
 
@@ -57,7 +43,7 @@ namespace ProEventos.API.Controllers {
             try {
                 var evento = await _eventoService.GetEventoByIdAsync(eventoId, true);
                 if (evento == null) {
-                    return NotFound($"Nenhum evento com  id {eventoId} foi encontrado!");
+                    return NoContent();
                 }
                 return Ok(evento);
 
@@ -74,7 +60,7 @@ namespace ProEventos.API.Controllers {
             try {
                 var evento = await _eventoService.GetAllEventosByTemaAsync(tema, true);
                 if (evento == null) {
-                    return NotFound($"Nenhum evento com  o {tema} foi encontrado!");
+                    return NoContent();
                 }
                 return Ok(evento);
 
@@ -87,7 +73,7 @@ namespace ProEventos.API.Controllers {
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post(Evento model) {
+        public async Task<IActionResult> Post(EventoDto model) {
             try {
                 var evento = await _eventoService.AddEvento(model);
                 if (evento == null) {
@@ -104,7 +90,7 @@ namespace ProEventos.API.Controllers {
         }
 
         [HttpPut("{eventoId}")]
-        public async Task<IActionResult> Put(int eventoId, Evento model) {
+        public async Task<IActionResult> Put(int eventoId, EventoDto model) {
             try {
                 var evento = await _eventoService.UpdateEvento(eventoId, model);
                 if (evento == null) {
@@ -123,9 +109,13 @@ namespace ProEventos.API.Controllers {
         [HttpDelete("{eventoId}")]
         public async Task<IActionResult> Delete(int eventoId) {
             try {
-                
+                var evento = await _eventoService.GetEventoByIdAsync(eventoId, true);
+                if (evento == null) {
+                    return NoContent();
+                }
+
                 return await _eventoService.DeleteEvento(eventoId) ? 
-                  Ok("Evento deletado com sucesso!") : BadRequest("Erro ao tentar deletar evento");
+                  Ok("Evento deletado com sucesso!") : throw new Exception("Erro ao tentar deletar evento");
                 
 ;
             } catch (Exception ex) {

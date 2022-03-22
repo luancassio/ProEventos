@@ -2,15 +2,17 @@
 <table class="table table-striped">
   <thead class="table-dark">
     <tr>
+      <!-- <th *ngFor="let header of headers" [ngClass]="{'d-none d-md-table-cell': dNone }"> -->
       <th *ngFor="let header of headers">
         <ng-container
           *ngTemplateOutlet="header">
-        </ng-container>
+      </ng-container>
       </th>
     </tr>
   </thead>
   <tbody *ngIf="dados && dados.length">
     <tr *ngFor="let dadosLinha of dados">
+      <!-- <td *ngFor="let coluna of colunas" [ngClass]="{'d-none d-md-table-cell': dNone }"> -->
       <td *ngFor="let coluna of colunas">
         <ng-container
           *ngTemplateOutlet="coluna; context: { dadosLinha }">

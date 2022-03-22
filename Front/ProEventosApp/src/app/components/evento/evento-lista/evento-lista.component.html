@@ -9,17 +9,17 @@
     <app-table-generic [dados]="eventos">
 
       <ng-template #header>
-          <button class="btn btn-outline-light btn-sm" id="btn-eye" (click)="esconderImgame = !esconderImgame">
-            <i ngClass="{{esconderImgame ? 'fa-solid fa-eye' : 'fa-solid fa-eye-slash'}}"></i>
-          </button>
-      </ng-template>
+        <button class="btn btn-outline-light btn-sm" id="btn-eye" (click)="esconderImgame = !esconderImgame">
+          <i ngClass="{{esconderImgame ? 'fa-solid fa-eye' : 'fa-solid fa-eye-slash'}}"></i>
+        </button>
+      </ng-template >
       <ng-template #coluna let-item="dadosLinha">
-          <img  src="/assets/imagem/{{item.imageUrl}}" width="120" [collapse]="!esconderImgame" [isAnimated]="true">
+        <img src="/assets/imagem/{{item.imageUrl}}" width="120" [collapse]="!esconderImgame" [isAnimated]="true">
       </ng-template>
       
       <ng-template #header>Local</ng-template>
       <ng-template #coluna let-item="dadosLinha">
-          {{item.local}}
+        {{item.local}}
       </ng-template>
   
       <ng-template #header>Data</ng-template>
@@ -30,7 +30,7 @@
   
       <ng-template #header>Tema</ng-template>
       <ng-template #coluna let-item="dadosLinha">
-        {{item.tema}}
+          {{item.tema}}
       </ng-template>
       
       <ng-template #header>Qtd. Pessoa</ng-template>
@@ -74,7 +74,7 @@
             <img  src="/assets/imagem/{{item.imageUrl}}"  width="120" [collapse]="!esconderImgame" [isAnimated]="true">
           </td>
           <td class="d-none d-md-table-cell">{{item.local}}</td>
-          <td>{{item.dataEvento | date}}</td>
+          <td>{{item.dataEvento }}</td>
           <td>{{item.tema}}</td>
           <td class="d-none d-md-table-cell">{{item.qtdPessoa}}</td>
           <td class="d-none d-md-table-cell">{{item.lotes[0].nome | uppercase}}</td>
