@@ -29,9 +29,15 @@ namespace ProEventos.API {
             services.AddControllers().AddNewtonsoftJson(x => x.SerializerSettings
             .ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
             services.AddScoped<IGenericsPersistence, GenericsPersistence>();
+
+            services.AddScoped<ILoteService, LoteService>();
+            services.AddScoped<ILotePersistence, LotePersistence>();
+
             services.AddScoped<IEventoService, EventoService>();
             services.AddScoped<IEventoPersistence, EventoPersistence>();
+
             services.AddScoped<IPalestranteService, PalestranteService>();
             services.AddScoped<IPalestrantePersistence, PalestrantePersistence>();
 
