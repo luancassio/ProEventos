@@ -1,5 +1,14 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChildren } from '@angular/core';
-import { FormBuilder, FormControl, FormControlName, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControlName, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+
+import { BsLocaleService } from 'ngx-bootstrap/datepicker';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { ToastrService } from 'ngx-toastr';
+import Swal from 'sweetalert2';
+
+import { Evento } from 'src/app/core/models/interface/IEvento';
+import { EventoService } from 'src/app/services/evento.service';
 import { FormBaseComponent } from 'src/app/shared/components/form-base/form-base.component';
 
 @Component({
@@ -11,10 +20,20 @@ export class EventoDetalheComponent extends FormBaseComponent implements OnInit,
 
   @ViewChildren(FormControlName, { read: ElementRef }) formInputElements!: ElementRef[];
 
-  eventoForm!: FormGroup;
+  public eventoForm!: FormGroup;
+  public evento = {} as Evento;
+  public isId: boolean = false;
+  public eventoId: number = 0;
+  
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, 
+              private localeService: BsLocaleService,
+              private activeRoute: ActivatedRoute,
+              private eventoService: EventoService,
+              private toastr: ToastrService,
+              private spinner: NgxSpinnerService) {
     super();
+    this.localeService.use('pt-br');
 
     this.validationMessages = {
       tema: {
@@ -51,6 +70,7 @@ export class EventoDetalheComponent extends FormBaseComponent implements OnInit,
    }
 
   ngOnInit(): void {
+    this.carregarEvento();
     this.validationForm();
   }
 
@@ -71,6 +91,57 @@ export class EventoDetalheComponent extends FormBaseComponent implements OnInit,
   }
   public resetForm(): void{
     this.eventoForm.reset();
+  }
+
+  public carregarEvento(): void{
+    const eventoIdParam = this.activeRoute.snapshot.paramMap.get('id');
+
+    // flag para saber quando vou editar ou salvar um novo evento;
+    this.isId = eventoIdParam !== null ? true : false; 
+
+    if (eventoIdParam !== null) {
+        this.eventoId = +eventoIdParam;
+        Swal.showLoading()
+        this.eventoService.getEventoById(+eventoIdParam).subscribe((evento: Evento) =>{
+        this.evento = {...evento};
+        this.eventoForm.patchValue(this.evento);
+      }, (error)=>{
+        console.error(error);
+      }).add(() => { Swal.hideLoading(); });
+    }
+  }
+
+  public salvar_e_Alterar(): void{
+    if (this.isId) {
+      Swal.fire('Atualizando evento');
+      Swal.showLoading();
+      if (this.eventoForm.valid) {
+          this.evento = Object.assign({}, this.eventoForm.value);
+          this.eventoService.putEvento(this.evento, this.eventoId).subscribe(() => {
+          Swal.hideLoading();
+          Swal.fire('Atulizado!',`Evento atulizado com Sucesso.`,'success');
+        }, (err) => { 
+          console.error(err);
+          Swal.fire('Erro', 'Erro ao atualizar evento!', 'error');
+        }).add(() => { Swal.hideLoading(); });
+        
+      }
+      
+    }else{
+      Swal.fire('Salvando evento');
+      Swal.showLoading();
+      if (this.eventoForm.valid) {
+          this.evento = Object.assign({}, this.eventoForm.value);
+          this.eventoService.postEvento(this.evento).subscribe(() => {
+          Swal.hideLoading();
+          Swal.fire('Salvo!',`Evento salvo com Sucesso.`,'success');
+        }, (err) => { 
+          console.error(err);
+          Swal.fire('Erro', 'Erro ao salvar evento!', 'error');
+        }).add(() => { Swal.hideLoading(); });
+        
+      }
+    }
   }
 
 }

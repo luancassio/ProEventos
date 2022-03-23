@@ -1,8 +1,11 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { Router } from '@angular/router';
+
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
+import Swal from 'sweetalert2';
+
 import { Evento } from 'src/app/core/models/interface/IEvento';
 import { EventoService } from 'src/app/services/evento.service';
 
@@ -17,6 +20,7 @@ export class EventoListaComponent implements OnInit {
   public eventosFilter: any = [];
   private _filtroPesquisa: string = '';
   public esconderImgame: boolean = true;
+  public eventoId:number = 0;
 
   // Modal
   public modalRef?: BsModalRef;
@@ -46,12 +50,17 @@ export class EventoListaComponent implements OnInit {
   }
 
   public getEventos(): void{
-    this.spinner.show();
+ 
+    Swal.fire('Carregando lista de eventos!');
+    Swal.showLoading();
     this.eventoService.getEventos().subscribe((eventos: Evento[]) => {
       this.eventos = eventos;
       this.eventosFilter = this.eventos;
-    }, err =>{ console.error(err) }).add(() => this.spinner.hide());
-    // this.spinner.hide();
+    }, err =>{ 
+      console.error(err);
+      Swal.fire('Error','Não foi possível carregar a lista!', 'error');
+      Swal.hideLoading();
+    }).add(() => Swal.close());
   }
 
   // metodo pra filtra na busca por tema ou local
@@ -63,18 +72,44 @@ export class EventoListaComponent implements OnInit {
       );
   }
 
-  openModal(template: TemplateRef<any>) {
+  openModal(template: TemplateRef<any>, eventoId: number) {
+    this.eventoId = eventoId;
     this.modalRef = this.modalService.show(template, {class: 'modal-sm'});
   }
  
-  confirmar(): void {
-    this.modalRef?.hide();
-    this.toastr.success('O evento foi deletado com sucesso', 'Deletado');
+  confirmar(eventoId: number): void {
+    this.eventoId = eventoId;
+    Swal.fire({
+      title: 'Deletar Evento?',
+      text: `Deseja deletar o evento ${this.eventoId}`,
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sim',
+      cancelButtonText: 'Não'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire('Deletando Evento!');
+        Swal.showLoading();
+        this.eventoService.deleteEvento(this.eventoId).subscribe((response: any) => {
+          if (response.message === 'Deletado') {
+              Swal.hideLoading();
+              Swal.fire('Deletado!',`Evento ${this.eventoId} deletado com Sucesso.`,'success')
+                  .then(() => {this.getEventos();});
+            }
+          });
+      }
+    }).catch((err) =>{      
+      Swal.fire('Erro', `Erro ao  deletar evento, erro: ${{err}}!`, 'error');
+      Swal.hideLoading();
+    });
+      
+ 
   }
  
   recusar(): void {
     this.modalRef?.hide();
-    this.toastr.error('=(', 'Major Error');
   }
 
   detalheEvento(id: number){

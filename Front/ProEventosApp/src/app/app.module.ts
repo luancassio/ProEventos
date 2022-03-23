@@ -13,6 +13,13 @@ import { TituloComponent } from './shared/components/titulo/titulo.component';
 import { PerfilComponent } from './components/user/perfil/perfil.component';
 import { ContatoComponent } from './components/contato/contato.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { PalestranteComponent } from './components/palestrante/palestrante.component';
+import { EventoDetalheComponent } from './components/evento/evento-detalhe/evento-detalhe.component';
+import { EventoListaComponent } from './components/evento/evento-lista/evento-lista.component';
+import { UserComponent } from './components/user/user.component';
+import { LoginComponent } from './components/user/login/login.component';
+import { RegistrationComponent } from './components/user/registration/registration.component';
+import { TableGenericComponent } from './shared/components/table-generic/table-generic.component';
 
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
@@ -20,15 +27,15 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { ToastrModule } from 'ngx-toastr';
 import { NgxSpinnerModule } from "ngx-spinner";
-import { PalestranteComponent } from './components/palestrante/palestrante.component';
-import { EventoDetalheComponent } from './components/evento/evento-detalhe/evento-detalhe.component';
-import { EventoListaComponent } from './components/evento/evento-lista/evento-lista.component';
-import { UserComponent } from './components/user/user.component';
-import { LoginComponent } from './components/user/login/login.component';
-import { RegistrationComponent } from './components/user/registration/registration.component';
 import { CustomFormsModule } from 'ng2-validation'
-import { TableGenericComponent } from './shared/components/table-generic/table-generic.component';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
+import { defineLocale } from 'ngx-bootstrap/chronos';
+import { ptBrLocale } from 'ngx-bootstrap/locale';
+defineLocale('pt-br', ptBrLocale);
 
 @NgModule({
   declarations: [
@@ -52,11 +59,14 @@ import { TableGenericComponent } from './shared/components/table-generic/table-g
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    NgxSpinnerModule,
+    NgbModule,
+    SweetAlert2Module.forRoot(),
     CollapseModule.forRoot(),
     TooltipModule.forRoot(),
     BsDropdownModule.forRoot(),
     ModalModule.forRoot(),
-    NgxSpinnerModule,
+    BsDatepickerModule.forRoot(),
     ToastrModule.forRoot({
       timeOut: 2500,
       positionClass: 'toast-bottom-right',
