@@ -74,10 +74,122 @@
                     Cancelar Alteração
                 </button>
                 <button class="btn btn-success" [disabled]="!eventoForm.valid" (click)="salvar_e_Alterar()">
-                    <span class="spinner-border spinner-border-sm mr-1"></span>
+                    <span class="mr-1"></span>
                     Salvar Evento
                 </button>
             </div>
         </div>
     </form>
+</div>
+
+<!-- LOTES FORM -->
+
+<div class="card rounded shadow-sm mt-4" *ngIf="isId">
+    <div class="p-3">
+      <div class="d-flex border-bottom">
+        <h4 class="mr-auto">
+          Lotes do Evento  
+        </h4>
+        <h4>
+          <i class="fas fa-money-bill-wave"></i>
+        </h4>
+      </div>
+      <p>Clique em Lote para adicionar e preencher novos Lotes</p>
+      <div class="form-row p-1">
+        <div [formGroup]="eventoForm" class="col">
+          <div formArrayName="lotes" *ngFor="let lote of lotes.controls; let i = index">
+            <fieldset [formGroupName]="i" class="form-group">
+              <legend class=" capitalize">
+                <div class="d-flex justify-content-between align-items-center">
+                    {{  retornaTituloLote(lotes.get(i+'.nome')?.value) }}
+                    <button class="btn btn-outline-danger btn-sm mb-2 d-flex" (click)="excluirLote(i)"
+                        [adaptivePosition]="false"
+                       >
+                    <i class="fa fa-window-close my-1" style="margin-top: 6px !important; font-size: small;" ></i>
+                    <b class="ml-1">  Excluir</b>
+                    </button>
+                </div>
+                </legend>
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        <label>Nome</label>
+                        <input type="text" class="form-control is-invalid" formControlName="nome" placeholder="Lote" 
+                            [ngClass]="{'is-invalid': lotes.get(i+'.nome')?.errors &&  lotes.get(i+'.nome')?.touched }">
+                        <div *ngIf="lotes.get(i+'.nome')?.errors?.required" class="invalid-feedback">
+                            <span> Campo é obrigatório.</span>
+                        </div>
+                    </div> 
+                    <div class="form-group col-md-4">
+                        <label>Quantidade</label>
+                        <input type="text" class="form-control" formControlName="quantidade" placeholder="00"
+                        [ngClass]="{'is-invalid': lotes.get(i+'.quantidade')?.errors &&  lotes.get(i+'.quantidade')?.touched }">
+                        <div *ngIf="lotes.get(i+'.quantidade')?.errors?.required" class="invalid-feedback">
+                            <span> Campo é obrigatório.</span>
+                        </div>
+                        <div *ngIf="lotes.get(i+'.quantidade')?.errors?.range" class="invalid-feedback">
+                            <span> Quantidade de ser no mínimo 50 e no máximo 500.</span>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label>Preço</label>
+                        <input type="text" currencyMask class="form-control" formControlName="preco" placeholder="R$ 0,00"
+                        [ngClass]="{'is-invalid': lotes.get(i+'.preco')?.errors &&  lotes.get(i+'.preco')?.touched }">
+                        <div *ngIf="lotes.get(i+'.preco')?.errors?.required" class="invalid-feedback">
+                            <span> Campo é obrigatório.</span>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label>Data Início</label>
+                        <input type="text" class="form-control" formControlName="dataInicio" placeholder="01/01/2019"
+                               [ngClass]="{'is-invalid': lotes.get(i+'.dataInicio')?.errors &&  lotes.get(i+'.dataInicio')?.touched }"
+                               bsDatepicker 
+                               [bsConfig]="{
+                                   adaptivePosition: true, 
+                                   dateInputFormat: 'DD/MM/YYYY hh:mm a',
+                                   containerClass: 'theme-default',
+                                   showWeekNumbers: false
+                               }"
+                        >
+                        <div *ngIf="lotes.get(i+'.dataInicio')?.errors?.required" class="invalid-feedback">
+                            <span> Campo é obrigatório.</span>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label>Data Fim</label>
+                        <input type="text" class="form-control" formControlName="dataFim" placeholder="01/01/2019"
+                        [ngClass]="{'is-invalid': lotes.get(i+'.dataFim')?.errors &&  lotes.get(i+'.dataFim')?.touched }"
+                        bsDatepicker 
+                        [bsConfig]="{
+                            adaptivePosition: true, 
+                            dateInputFormat: 'DD/MM/YYYY hh:mm a',
+                            containerClass: 'theme-default',
+                            showWeekNumbers: false
+                        }"
+                        >
+                        <div *ngIf="lotes.get(i+'.dataFim')?.errors?.required" class="invalid-feedback">
+                            <span> Campo é obrigatório.</span>
+                        </div>
+                    </div>
+                </div>
+          </fieldset>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex justify-content-end align-items-center">
+        <button (click)="adicionarLote()" class="btn btn-outline-info btn-sm mt-2" tooltip="Adicionar Lote">
+            <i class="fa fa-plus-circle my-1 mt-1" style="font-size: small;"></i>
+            <b class="ml-1">  Lote</b>
+          </button>
+    </div>
+  </div>
+  <div class="card-footer">
+    <div class="d-flex justify-content-between">
+      <button class="btn btn-outline-danger mr-auto border">
+        Cancelar Alteração
+      </button>
+      <button class="btn btn-success" [disabled]="!eventoForm.controls.lotes.valid" (click)="salvarLotes()">
+        Salvar Lotes
+      </button>
+    </div>
+  </div>
 </div>

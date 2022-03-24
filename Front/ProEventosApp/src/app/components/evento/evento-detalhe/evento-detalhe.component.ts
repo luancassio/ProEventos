@@ -1,15 +1,18 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChildren } from '@angular/core';
-import { FormBuilder, FormControlName, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { AbstractControl, FormArray, FormBuilder, FormControl, FormControlName, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { BsLocaleService } from 'ngx-bootstrap/datepicker';
-import { NgxSpinnerService } from 'ngx-spinner';
-import { ToastrService } from 'ngx-toastr';
 import Swal from 'sweetalert2';
 
 import { Evento } from 'src/app/core/models/interface/IEvento';
+import { Lote } from 'src/app/core/models/interface/ILote';
 import { EventoService } from 'src/app/services/evento.service';
 import { FormBaseComponent } from 'src/app/shared/components/form-base/form-base.component';
+import { CustomValidators } from 'ng2-validation';
+import { LoteService } from 'src/app/services/lote.service';
+import { Location } from '@angular/common';
+
 
 @Component({
   selector: 'app-evento-detalhe',
@@ -24,14 +27,19 @@ export class EventoDetalheComponent extends FormBaseComponent implements OnInit,
   public evento = {} as Evento;
   public isId: boolean = false;
   public eventoId: number = 0;
+  get lotes(): FormArray { return this.eventoForm.get('lotes') as FormArray }
   
+  public cssValidator(campoForm: FormControl | AbstractControl): any{
+    return {'is-invalid': campoForm.errors && campoForm.touched };
+  }
 
   constructor(private fb: FormBuilder, 
               private localeService: BsLocaleService,
               private activeRoute: ActivatedRoute,
+              private router: Router,
               private eventoService: EventoService,
-              private toastr: ToastrService,
-              private spinner: NgxSpinnerService) {
+              private loteService: LoteService,
+              private location: Location) {
     super();
     this.localeService.use('pt-br');
 
@@ -64,6 +72,8 @@ export class EventoDetalheComponent extends FormBaseComponent implements OnInit,
       estado: {
         required: 'Informe o Estado',
       }
+    
+
     };
 
     super.configurarMensagensValidacaoBase(this.validationMessages);
@@ -83,6 +93,22 @@ export class EventoDetalheComponent extends FormBaseComponent implements OnInit,
       telefone: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       imageUrl: ['', [Validators.required]],
+      lotes: this.fb.array([])
+    });
+  }
+
+  adicionarLote(): void{
+    this.lotes.push(this.criarLote({id: 0} as Lote));
+  }
+
+  criarLote(lote: Lote): FormGroup{
+    return this.fb.group({
+      id: [lote.id],
+      nome:  [lote.nome, [Validators.required]],
+      quantidade: [lote.quantidade, [Validators.required ,  CustomValidators.range([50,500])]],
+      preco: [lote.preco, [Validators.required]],
+      dataInicio: [lote.dataInicio, [Validators.required]],
+      dataFim: [lote.dataFim, [Validators.required]]
     });
   }
 
@@ -93,6 +119,14 @@ export class EventoDetalheComponent extends FormBaseComponent implements OnInit,
     this.eventoForm.reset();
   }
 
+  retornaTituloLote(titulo: string): string{
+    console.log(typeof titulo);
+    
+    return titulo === null || titulo.trim() === '' ?
+      'Nome do Lote' :  titulo;
+
+  }
+
   public carregarEvento(): void{
     const eventoIdParam = this.activeRoute.snapshot.paramMap.get('id');
 
@@ -101,13 +135,17 @@ export class EventoDetalheComponent extends FormBaseComponent implements OnInit,
 
     if (eventoIdParam !== null) {
         this.eventoId = +eventoIdParam;
+        Swal.fire("carregando", "Carregando Informações", 'info');
         Swal.showLoading()
         this.eventoService.getEventoById(+eventoIdParam).subscribe((evento: Evento) =>{
         this.evento = {...evento};
         this.eventoForm.patchValue(this.evento);
+        this.evento.lotes.forEach(lote => { 
+          this.lotes.push(this.criarLote(lote)); 
+        });
       }, (error)=>{
         console.error(error);
-      }).add(() => { Swal.hideLoading(); });
+      }).add(() => { Swal.close(); });
     }
   }
 
@@ -132,16 +170,75 @@ export class EventoDetalheComponent extends FormBaseComponent implements OnInit,
       Swal.showLoading();
       if (this.eventoForm.valid) {
           this.evento = Object.assign({}, this.eventoForm.value);
-          this.eventoService.postEvento(this.evento).subscribe(() => {
+          this.eventoService.postEvento(this.evento).subscribe((evento: Evento) => {
           Swal.hideLoading();
           Swal.fire('Salvo!',`Evento salvo com Sucesso.`,'success');
+          this.router.navigate([`eventos/detalhe/${evento.id}`]);
         }, (err) => { 
           console.error(err);
           Swal.fire('Erro', 'Erro ao salvar evento!', 'error');
-        }).add(() => { Swal.hideLoading(); });
+        }).add(() => { 
+          Swal.hideLoading(); 
+        });
         
       }
     }
+  }
+
+  public salvarLotes(){
+    Swal.fire('Salvando Lotes');
+    Swal.showLoading();
+    if (this.eventoForm.controls.lotes.valid) {
+      console.log(this.eventoId, this.eventoForm.value.lotes);
+      
+      this.loteService.SaveLotes(this.eventoId, this.eventoForm.value.lotes).subscribe(() => {
+        Swal.fire('Salvo!',`Lotes salvo com Sucesso.`,'success');
+        this.lotes.reset();
+
+
+      }, (err) => { 
+        Swal.fire('Erro', 'Erro ao salvar lotes!', 'error');
+        console.error(err); 
+      }).add(() => {
+        // Swal.hideLoading();
+        location.reload();
+      })
+    }
+  }
+
+  excluirLote(indice: number){
+    console.log(this.lotes.get(indice + '.id')?.value);
+    console.log(this.lotes.get(indice + '.nome')?.value);
+    console.log(this.eventoId);
+    console.log(indice);
+    
+    // this.lotes.removeAt(indice);
+    Swal.fire({
+      title: 'Deletar Lote?',
+      text: `Deseja deletar o lote ${this.lotes.get(indice + '.nome')?.value}`,
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sim',
+      cancelButtonText: 'Não'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire('Deletando Lote!');
+        Swal.showLoading();
+        this.loteService.deleteLote(this.eventoId, this.lotes.get(indice + '.id')?.value).subscribe((response: any) => {
+            
+            
+          }).add(() => {
+            Swal.hideLoading();
+            Swal.fire('Deletado!',`Lote ${this.lotes.get(indice + '.nome')?.value} deletado com Sucesso.`,'success');
+            this.lotes.removeAt(indice);
+          });
+      }
+    }).catch((err) =>{      
+      Swal.fire('Erro', `Erro ao  deletar lote, erro: ${{err}}!`, 'error');
+      Swal.hideLoading();
+    });
   }
 
 }

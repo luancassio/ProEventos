@@ -54,7 +54,7 @@ namespace ProEventos.API.Controllers {
         [HttpDelete("{eventoId}/{loteId}")]
         public async Task<IActionResult> Delete(int eventoId, int loteId) {
             try {
-                var lote = await _loteService.GetLoteByIdsAsync(loteId, loteId);
+                var lote = await _loteService.GetLoteByIdsAsync(eventoId, loteId);
                 if (lote == null) {
                     return NoContent();
                 }
