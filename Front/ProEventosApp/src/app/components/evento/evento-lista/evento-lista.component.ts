@@ -8,6 +8,7 @@ import Swal from 'sweetalert2';
 
 import { Evento } from 'src/app/core/models/interface/IEvento';
 import { EventoService } from 'src/app/services/evento.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-evento-lista',
@@ -77,6 +78,13 @@ export class EventoListaComponent implements OnInit {
     this.modalRef = this.modalService.show(template, {class: 'modal-sm'});
   }
  
+  mostrarImagem(imagem: string):string{
+    console.log(`${environment.apiURL}Resources/Images/${imagem}`)
+    return (imagem !== '' 
+    ? `${environment.apiURL}Resources/Images/${imagem}` 
+    : 'assets/imagem/semImagem.png');
+  }
+
   confirmar(eventoId: number): void {
     this.eventoId = eventoId;
     Swal.fire({

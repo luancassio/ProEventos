@@ -100,6 +100,10 @@ namespace ProEventos.API.Controllers {
             try {
 
                 var evento = await _eventoService.GetEventoByIdAsync(eventoId, true);
+                if (evento == null) {
+                    return NoContent();
+                }
+
                 var file = Request.Form.Files[0];
                 if (file.Length > 0) {
                     DeleteImage(evento.ImageUrl);
@@ -141,8 +145,13 @@ namespace ProEventos.API.Controllers {
                     return NoContent();
                 }
 
-                return await _eventoService.DeleteEvento(eventoId) ? 
-                  Ok(new {message = "Deletado" }) : throw new Exception("Erro ao tentar deletar evento");
+                if (await _eventoService.DeleteEvento(eventoId)) {
+                    DeleteImage(evento.ImageUrl);
+                    return Ok(new { message = "Deletado" });
+                } else {
+                    throw new Exception("Erro ao tentar deletar evento");
+                }
+                   
                 
 ;
             } catch (Exception ex) {
@@ -157,11 +166,13 @@ namespace ProEventos.API.Controllers {
         public async Task<string> SaveImage(IFormFile imageFile) {
             string imageName = new string(Path.GetFileNameWithoutExtension(imageFile.FileName)
                 .Take(10).ToArray()).Replace(' ', '-');
+
             imageName = $"{imageName}{DateTime.UtcNow.ToString("yymmssfff")}{Path.GetExtension(imageFile.FileName)}";
+
             var imagePath = Path.Combine(_hostEnvironment.ContentRootPath, @"Resources/Images", imageName);
 
             using (var fileStream =  new FileStream(imagePath, FileMode.Create)) {
-                await fileStream.CopyToAsync(fileStream);
+                await imageFile.CopyToAsync(fileStream);
             }
                 return imageName;
         }

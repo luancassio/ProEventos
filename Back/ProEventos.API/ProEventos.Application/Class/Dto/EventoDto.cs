@@ -16,7 +16,6 @@ namespace ProEventos.Application.Class.Dto {
 
         [Display(Name ="Imagem")]
         [RegularExpression(@".*\.(jpe?g|png)$", ErrorMessage ="Formato da {0} não suportado!")]
-        [Required(ErrorMessage ="{0} é obrigatório!")]
         public string ImageUrl { get; set; }
 
         [Required(ErrorMessage ="O campo {0} é obrigatório!")]

@@ -13,6 +13,7 @@ import { FormBaseComponent } from 'src/app/shared/components/form-base/form-base
 import { CustomValidators } from 'ng2-validation';
 import { LoteService } from 'src/app/services/lote.service';
 import { Location } from '@angular/common';
+import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -25,10 +26,15 @@ export class EventoDetalheComponent extends FormBaseComponent implements OnInit,
   @ViewChildren(FormControlName, { read: ElementRef }) formInputElements!: ElementRef[];
 
   public eventoForm!: FormGroup;
+  public form!: FormGroup;
   public evento = {} as Evento;
   public isId: boolean = false;
   public eventoId: number = 0;
+
+  public imagemURL = '/assets/imagem/UploadImage.png'
+  file!: File;
   get lotes(): FormArray { return this.eventoForm.get('lotes') as FormArray }
+
   
   public cssValidator(campoForm: FormControl | AbstractControl): any{
     return {'is-invalid': campoForm.errors && campoForm.touched };
@@ -93,7 +99,7 @@ export class EventoDetalheComponent extends FormBaseComponent implements OnInit,
       qtdPessoa: ['', [Validators.required, Validators.max(10000)]],
       telefone: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
-      imageUrl: ['', [Validators.required]],
+      imageUrl: [''],
       lotes: this.fb.array([])
     });
   }
@@ -121,8 +127,6 @@ export class EventoDetalheComponent extends FormBaseComponent implements OnInit,
   }
 
   retornaTituloLote(titulo: string): string{
-    console.log(typeof titulo);
-    
     return titulo === null || titulo.trim() === '' ?
       'Nome do Lote' :  titulo;
 
@@ -143,6 +147,11 @@ export class EventoDetalheComponent extends FormBaseComponent implements OnInit,
         this.eventoService.getEventoById(+eventoIdParam).subscribe((evento: Evento) =>{
         this.evento = {...evento};
         this.eventoForm.patchValue(this.evento);
+
+        if (this.evento.imageUrl !== '') {
+          this.imagemURL =  environment.apiURL + 'resources/images/' + this.evento.imageUrl;
+        }
+
         this.evento.lotes.forEach(lote => { 
           this.lotes.push(this.criarLote(lote)); 
         });
@@ -244,4 +253,31 @@ export class EventoDetalheComponent extends FormBaseComponent implements OnInit,
     });
   }
 
+  onFileChange(evt: any): void{
+    const reader = new FileReader();
+    reader.onload = (event: any) => this.imagemURL = event.target.result;
+    this.file = evt.target.files;
+    reader.readAsDataURL(evt.target.files[0]);
+
+    this.uploadImage();
+  }
+
+  uploadImage():void {
+    Swal.fire('Upload', 'Fazendo Upload da imagem', 'info');
+    Swal.showLoading();
+
+  console.log(this.eventoId, this.file, 'this.eventoId, this.file');
+  
+    this.eventoService.postUpload(this.eventoId, this.file).subscribe(() => {
+      this.router.navigate([`eventos/detalhe/${this.eventoId}`]);
+      Swal.fire('Sucesso', 'Imagem salva com sucesso', 'success');
+    }, (error) => {
+      
+      Swal.fire('Error', 'Error ao salvar imagem com sucesso', 'error');
+      console.error(error);
+    } )
+    .add(() =>{
+      Swal.hideLoading();
+    });
+  }
 }
