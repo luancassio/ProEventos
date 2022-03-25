@@ -29,6 +29,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { CustomFormsModule } from 'ng2-validation'
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { NgxCurrencyModule } from 'ngx-currency'; 
 
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -67,6 +68,7 @@ defineLocale('pt-br', ptBrLocale);
     BsDropdownModule.forRoot(),
     ModalModule.forRoot(),
     BsDatepickerModule.forRoot(),
+    NgxCurrencyModule,
     ToastrModule.forRoot({
       timeOut: 2500,
       positionClass: 'toast-bottom-right',

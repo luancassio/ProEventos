@@ -8,6 +8,8 @@ using ProEventos.Application.Interface;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using ProEventos.Application.Class.Dto;
+using System.IO;
+using Microsoft.AspNetCore.Hosting;
 
 namespace ProEventos.API.Controllers {
 
@@ -16,8 +18,12 @@ namespace ProEventos.API.Controllers {
     public class EventoController : ControllerBase {
 
         public readonly IEventoService _eventoService;
-        public EventoController(IEventoService eventoService) {
+        public readonly IWebHostEnvironment _hostEnvironment;
+
+        public EventoController(IEventoService eventoService, IWebHostEnvironment hostEnvironment) {
             _eventoService = eventoService;
+            _hostEnvironment = hostEnvironment;
+
         }
 
         [HttpGet]
@@ -89,6 +95,27 @@ namespace ProEventos.API.Controllers {
             }
         }
 
+        [HttpPost("upload-image/{eventoId}")]
+        public async Task<IActionResult> UploadImage(int eventoId) {
+            try {
+
+                var evento = await _eventoService.GetEventoByIdAsync(eventoId, true);
+                var file = Request.Form.Files[0];
+                if (file.Length > 0) {
+                    DeleteImage(evento.ImageUrl);
+                    evento.ImageUrl =  await SaveImage(file);
+                }
+                var eventoRetorno = await _eventoService.UpdateEvento(eventoId, evento);
+                return Ok(eventoRetorno);
+
+            } catch (Exception ex) {
+
+                return this.StatusCode
+                    (StatusCodes.Status500InternalServerError,
+                    $"Error ao tentar salvar evento. Erro: {ex.Message}");
+            }
+        }
+
         [HttpPut("{eventoId}")]
         public async Task<IActionResult> Put(int eventoId, EventoDto model) {
             try {
@@ -123,6 +150,27 @@ namespace ProEventos.API.Controllers {
                 return this.StatusCode
                     (StatusCodes.Status500InternalServerError,
                     $"Error ao tentar deletar evento. Erro: {ex.Message}");
+            }
+        }
+
+        [NonAction]
+        public async Task<string> SaveImage(IFormFile imageFile) {
+            string imageName = new string(Path.GetFileNameWithoutExtension(imageFile.FileName)
+                .Take(10).ToArray()).Replace(' ', '-');
+            imageName = $"{imageName}{DateTime.UtcNow.ToString("yymmssfff")}{Path.GetExtension(imageFile.FileName)}";
+            var imagePath = Path.Combine(_hostEnvironment.ContentRootPath, @"Resources/Images", imageName);
+
+            using (var fileStream =  new FileStream(imagePath, FileMode.Create)) {
+                await fileStream.CopyToAsync(fileStream);
+            }
+                return imageName;
+        }
+
+        [NonAction]
+        public void DeleteImage(string imageName) {
+            var imagePath = Path.Combine(_hostEnvironment.ContentRootPath, @"Resources/Images", imageName);
+            if (System.IO.File.Exists(imagePath)) {
+                System.IO.File.Delete(imagePath);
             }
         }
 

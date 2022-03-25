@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChildren } from '@angular/core';
-import { AbstractControl, FormArray, FormBuilder, FormControl, FormControlName, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormArray, FormBuilder, FormControl, 
+         FormControlName, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { BsLocaleService } from 'ngx-bootstrap/datepicker';
@@ -132,6 +133,8 @@ export class EventoDetalheComponent extends FormBaseComponent implements OnInit,
 
     // flag para saber quando vou editar ou salvar um novo evento;
     this.isId = eventoIdParam !== null ? true : false; 
+    console.log(this.isId);
+    
 
     if (eventoIdParam !== null) {
         this.eventoId = +eventoIdParam;
