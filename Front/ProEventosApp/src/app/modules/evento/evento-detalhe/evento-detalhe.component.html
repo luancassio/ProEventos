@@ -12,7 +12,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row mt-3">
                         <div class="form-group col-md-8">
                             <label>Local</label>
                             <input type="text" class="form-control" formControlName="local" placeholder="Insira o Local" [ngClass]="{'is-invalid': displayMessage.local }"> 
@@ -39,32 +39,27 @@
                             </div>  
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="form-group col-md-2">
+                    <div class="row mt-3">
+                        <div class="form-group col-md-3">
                             <label>Qtd Pessoas</label>
                             <input type="number" class="form-control" formControlName="qtdPessoa" placeholder="Quantidade de Pessoa" [ngClass]="{'is-invalid': displayMessage.qtdPessoa }"> 
                             <div *ngIf="displayMessage.qtdPessoa" class="invalid-feedback">
                                 <span [innerHTML]="displayMessage.qtdPessoa"></span>
                             </div>
                         </div>
-                        <div class="form-group col-md-2">
+                        <div class="form-group col-md-4">
                             <label>Telefone</label>
                             <input type="text" class="form-control" formControlName="telefone" placeholder="(000) 90000-0000" [ngClass]="{'is-invalid': displayMessage.telefone }"> 
                             <div *ngIf="displayMessage.telefone" class="invalid-feedback">
                                 <span [innerHTML]="displayMessage.telefone"></span>
                             </div> 
                         </div>
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-5">
                             <label>E-mail</label>
                             <input type="text" class="form-control is-invalid" formControlName="email" placeholder="e-mail" [ngClass]="{'is-invalid': displayMessage.email }"> 
                             <div *ngIf="displayMessage.email" class="invalid-feedback">
                                 <span [innerHTML]="displayMessage.email"></span>
                             </div> 
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label>Imagem</label>
-                            <input type="text" class="form-control" formControlName="imageUrl" placeholder="imagem"> 
-                            
                         </div>
                     </div>
                 </div>
@@ -209,22 +204,22 @@
         tooltip="Uplaod de Nova Imagem" [adaptivePosition]="false" placement="bottom" />
       </div>
       <div class="card-body pt-3">
-        <h4>{{evento.tema}}</h4>
+        <h4>{{eventoForm.get('tema').value}}</h4>
         <p class="card-text">
-          <b>Local:</b> {{evento.local}}
+          <b>Local:</b> {{eventoForm.get('local').value}}
           <br>
-          <b>Data:</b> {{evento.dataEvento}}
+          <b>Data:</b> {{eventoForm.get('dataEvento').value.toLocaleString('pt-BR')}}
         </p>
         <hr>
         <p class="card-text">
           <b>Contatos</b><br>
-          <small class="text-muted">Telefone: {{evento.telefone}}</small>
+          <small class="text-muted">Telefone: {{eventoForm.get('telefone').value}}</small>
           <br>
-          <small class="text-muted">e-mail: {{evento.email}}</small>
+          <small class="text-muted">e-mail: {{eventoForm.get('email').value}}</small>
         </p>
         <p class="card-text">
           Capacidade:
-          <small class="text-muted">{{evento.qtdPessoa}}</small>
+          <small class="text-muted">{{eventoForm.get('qtdPessoa').value}}</small>
         </p>
         <div class="row">
           <div class="icon-block col-md-8 iconesSociais">

@@ -5,9 +5,7 @@ import { Evento } from '../core/models/interface/IEvento';
 import { take } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class EventoService {
 
   apiURL= environment.apiURL+'api/Evento';

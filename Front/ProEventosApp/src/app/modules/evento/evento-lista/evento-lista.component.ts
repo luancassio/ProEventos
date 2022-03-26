@@ -2,8 +2,6 @@ import { Component, OnInit, TemplateRef } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import { NgxSpinnerService } from 'ngx-spinner';
-import { ToastrService } from 'ngx-toastr';
 import Swal from 'sweetalert2';
 
 import { Evento } from 'src/app/core/models/interface/IEvento';
@@ -36,9 +34,8 @@ export class EventoListaComponent implements OnInit {
   constructor(
     private eventoService: EventoService,
     private modalService: BsModalService,
-    private toastr: ToastrService,
     private router: Router,
-    private spinner: NgxSpinnerService) { }
+) { }
 
   ngOnInit() {
     this.getEventos();
@@ -79,7 +76,6 @@ export class EventoListaComponent implements OnInit {
   }
  
   mostrarImagem(imagem: string):string{
-    console.log(`${environment.apiURL}Resources/Images/${imagem}`)
     return (imagem !== '' 
     ? `${environment.apiURL}Resources/Images/${imagem}` 
     : 'assets/imagem/semImagem.png');

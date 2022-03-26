@@ -7,28 +7,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
-import { EventoComponent } from './components/evento/evento.component';
-import { NavComponent } from './shared/components/nav/nav.component';
-import { TituloComponent } from './shared/components/titulo/titulo.component';
-import { PerfilComponent } from './components/user/perfil/perfil.component';
-import { ContatoComponent } from './components/contato/contato.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { PalestranteComponent } from './components/palestrante/palestrante.component';
-import { EventoDetalheComponent } from './components/evento/evento-detalhe/evento-detalhe.component';
-import { EventoListaComponent } from './components/evento/evento-lista/evento-lista.component';
-import { UserComponent } from './components/user/user.component';
-import { LoginComponent } from './components/user/login/login.component';
-import { RegistrationComponent } from './components/user/registration/registration.component';
-import { TableGenericComponent } from './shared/components/table-generic/table-generic.component';
 
-import { CollapseModule } from 'ngx-bootstrap/collapse';
-import { TooltipModule } from 'ngx-bootstrap/tooltip';
+
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { ToastrModule } from 'ngx-toastr';
 import { NgxSpinnerModule } from "ngx-spinner";
-import { CustomFormsModule } from 'ng2-validation'
-import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { TimepickerModule } from 'ngx-bootstrap/timepicker';
 import { NgxCurrencyModule } from 'ngx-currency'; 
 
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
@@ -36,49 +21,33 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { defineLocale } from 'ngx-bootstrap/chronos';
 import { ptBrLocale } from 'ngx-bootstrap/locale';
+import { SharedModule } from './shared/shared.module';
+import { EventoModule } from './modules/evento/evento.module';
+import { PalestranteModule } from './modules/palestrante/palestrante.module';
+import { UserModule } from './modules/user/user.module';
 defineLocale('pt-br', ptBrLocale);
 
 @NgModule({
   declarations: [
     AppComponent,
-    EventoComponent,
-    NavComponent,
-    TituloComponent,
-    PerfilComponent,
-    ContatoComponent,
-    DashboardComponent,
-    PalestranteComponent,
-    EventoDetalheComponent,
-    EventoListaComponent,
-    UserComponent,
-    LoginComponent,
-    RegistrationComponent,
-    TableGenericComponent
   ],
   imports: [
-    BrowserModule,
     AppRoutingModule,
+    BrowserModule ,
     HttpClientModule,
     BrowserAnimationsModule,
-    NgxSpinnerModule,
+
+    SharedModule,
+    EventoModule,
+    PalestranteModule,
+    UserModule,
+
     NgbModule,
     SweetAlert2Module.forRoot(),
-    CollapseModule.forRoot(),
-    TooltipModule.forRoot(),
     BsDropdownModule.forRoot(),
     ModalModule.forRoot(),
-    BsDatepickerModule.forRoot(),
     NgxCurrencyModule,
-    ToastrModule.forRoot({
-      timeOut: 2500,
-      positionClass: 'toast-bottom-right',
-      preventDuplicates: true,
-      progressBar: true,
-      progressAnimation: 'increasing'
-    }),
-    FormsModule,
-    CustomFormsModule,
-    ReactiveFormsModule,
+   
   ],
   providers: [],
   bootstrap: [AppComponent],

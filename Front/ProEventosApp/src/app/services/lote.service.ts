@@ -5,9 +5,7 @@ import { take } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Lote } from '../core/models/interface/ILote';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class LoteService {
 
   apiURL= environment.apiURL+'api/Lotes';

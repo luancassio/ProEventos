@@ -30,7 +30,7 @@ export class EventoDetalheComponent extends FormBaseComponent implements OnInit,
   public evento = {} as Evento;
   public isId: boolean = false;
   public eventoId: number = 0;
-
+  mytime: Date = new Date();
   public imagemURL = '/assets/imagem/UploadImage.png'
   file!: File;
   get lotes(): FormArray { return this.eventoForm.get('lotes') as FormArray }
@@ -89,6 +89,10 @@ export class EventoDetalheComponent extends FormBaseComponent implements OnInit,
   ngOnInit(): void {
     this.carregarEvento();
     this.validationForm();
+  }
+
+  dataPickValue(data: any){
+    console.log(data, 'data')
   }
 
   public validationForm(): void{

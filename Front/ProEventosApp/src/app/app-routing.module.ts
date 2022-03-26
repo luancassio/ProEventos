@@ -1,37 +1,33 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ContatoComponent } from './components/contato/contato.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { EventoDetalheComponent } from './components/evento/evento-detalhe/evento-detalhe.component';
-import { EventoListaComponent } from './components/evento/evento-lista/evento-lista.component';
-import { EventoComponent } from './components/evento/evento.component';
-import { PalestranteComponent } from './components/palestrante/palestrante.component';
-import { PerfilComponent } from './components/user/perfil/perfil.component';
-import { LoginComponent } from './components/user/login/login.component';
-import { RegistrationComponent } from './components/user/registration/registration.component';
-import { UserComponent } from './components/user/user.component';
+import { ContatoComponent } from './modules/contato/contato/contato.component';
+import { DashboardComponent } from './modules/dashboard/dashboard/dashboard.component';
+import { EventoComponent } from './modules/evento/evento/evento.component';
+import { PalestranteComponent } from './modules/palestrante/palestrante/palestrante.component';
+import { UserComponent } from './modules/user/user/user.component';
 
 const routes: Routes = [
-  { path: 'eventos', redirectTo: 'eventos/lista' },
-  { 
-    path: 'eventos', component: EventoComponent,
-    children: [
-      { path: 'detalhe/:id', component: EventoDetalheComponent },
-      { path: 'detalhe', component: EventoDetalheComponent },
-      { path: 'lista', component: EventoListaComponent },
-    ] 
+  {
+    path: 'eventos',
+    component: EventoComponent,
+    loadChildren: () => import('./modules/evento/evento.module').then(m => m.EventoModule)
   },
-  { 
-    path: 'user', component: UserComponent,
-    children: [
-      { path: 'login', component: LoginComponent },
-      { path: 'cadastro', component: RegistrationComponent }
-    ]
+  { path: 'palestrantes', component: PalestranteComponent,
+    loadChildren: () => import('./modules/palestrante/palestrante.module').then(m => m.PalestranteModule) 
   },
-  { path: 'user/perfil', component: PerfilComponent },
-  { path: 'dashboard', component: DashboardComponent },
-  { path: 'palestrantes', component: PalestranteComponent },
-  { path: 'contato', component: ContatoComponent },
+ 
+  { path: 'user', component: UserComponent,
+    loadChildren: () => import('./modules/user/user.module').then(m => m.UserModule) 
+  },
+  
+  { path: 'dashboard', component: DashboardComponent,
+  loadChildren: () => import('./modules/dashboard/dashboard.module').then(m => m.DashboardModule) 
+  },
+  { path: 'contato', component: ContatoComponent, 
+    loadChildren: () => import('./modules/contato/contato.module').then(m => m.ContatoModule) 
+  },
+
+  
   { path: '', redirectTo: 'dashboard', pathMatch: 'full'},
   { path: '**', redirectTo: 'dashboard', pathMatch: 'full'}
 ];
