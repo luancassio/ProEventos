@@ -46,7 +46,7 @@ export class EventoDetalheComponent extends FormBaseComponent implements OnInit,
               private router: Router,
               private eventoService: EventoService,
               private loteService: LoteService,
-              private location: Location) {
+              ) {
     super();
     this.localeService.use('pt-br');
 

@@ -34,7 +34,6 @@ import { LoteService } from 'src/app/services/lote.service';
         SharedModule,
         BsDatepickerModule.forRoot(),
         TooltipModule.forRoot(),
-        NgxSpinnerModule,
     ],
     exports: [
         EventoComponent

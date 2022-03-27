@@ -92,3 +92,4 @@ C:\Users\lcassio\Desktop\ProEventos\Back\ProEventos.API\ProEventos.API\bin\Debug
 C:\Users\lcassio\Desktop\ProEventos\Back\ProEventos.API\ProEventos.API\bin\Debug\net5.0\Microsoft.Extensions.Options.dll
 C:\Users\lcassio\Desktop\ProEventos\Back\ProEventos.API\ProEventos.API\bin\Debug\net5.0\Microsoft.Extensions.Primitives.dll
 C:\Users\lcassio\Desktop\ProEventos\Back\ProEventos.API\ProEventos.API\bin\Debug\net5.0\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\lcassio\Desktop\ProEventos\Back\ProEventos.API\ProEventos.API\bin\Debug\net5.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll

@@ -33,7 +33,7 @@ namespace ProEventos.Persistence.Interface {
                 query = query.Include(pe => pe.PalestrantesEventos)
                     .ThenInclude(e => e.Evento);
             }
-            query.AsNoTracking().OrderBy(p => p.Id).Where(p => p.Nome.ToLower().Contains(nome.ToLower()));
+            query.AsNoTracking().OrderBy(p => p.Id).Where(p => p.User.PrimeiroNome.ToLower().Contains(nome.ToLower()));
 
             return await query.ToArrayAsync();
         }
