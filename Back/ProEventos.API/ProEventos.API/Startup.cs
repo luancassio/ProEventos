@@ -63,9 +63,12 @@ namespace ProEventos.API {
 
             // configuração para ignora os loops de relacionamento das classes
             services.AddControllers()
-            .AddJsonOptions(opt => opt.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()),                .AddNewtonsoftJson(opt => opt.SerializerSettings
-            .ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore));
-
+                              .AddJsonOptions(options =>
+                                  options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter())
+                              )
+                              .AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling =
+                                  Newtonsoft.Json.ReferenceLoopHandling.Ignore
+                              );
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
@@ -107,6 +110,7 @@ namespace ProEventos.API {
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
             app.UseCors(cors => cors.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
 

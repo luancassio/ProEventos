@@ -1,7 +1,7 @@
 {
   "version": 2,
-  "dgSpecHash": "ygsD4FzIl/6iIpQEQpsQS7RNR4CJYPli0/AssQo66yuxBPFddFC8V/FxqydEEyjcigvtQpmYvoe6Es2EVTb80Q==",
-  "success": false,
+  "dgSpecHash": "ba4PWenhYf4agwAuf/Lq0x8gP0CUWd2+SBJCdeLp2jxiZuNuKc/S6fpfigtE+Q3Gps6cSlVrNZn3T5eRDgVv9w==",
+  "success": true,
   "projectFilePath": "C:\\Users\\lcassio\\Desktop\\ProEventos\\Back\\ProEventos.API\\ProEventos.API\\ProEventos.API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\lcassio\\.nuget\\packages\\automapper\\11.0.0\\automapper.11.0.0.nupkg.sha512",
@@ -152,15 +152,5 @@
     "C:\\Users\\lcassio\\.nuget\\packages\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
     "C:\\Users\\lcassio\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "NU1101",
-      "level": "Error",
-      "message": "Não é possível encontrar o pacote Microsoft.AspNetCore.Mvc.Identity.EntityFrameworkCore. Não existe nenhum pacote com esta ID nas origens: Microsoft Visual Studio Offline Packages, nuget.org",
-      "libraryId": "Microsoft.AspNetCore.Mvc.Identity.EntityFrameworkCore",
-      "targetGraphs": [
-        "net5.0"
-      ]
-    }
-  ]
+  "logs": []
 }

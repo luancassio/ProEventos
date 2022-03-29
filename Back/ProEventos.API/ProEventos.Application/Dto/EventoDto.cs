@@ -4,7 +4,9 @@ using System.ComponentModel.DataAnnotations;
 namespace ProEventos.Application.Dto {
     public class EventoDto {
         public int Id { get; set; }
+
         public string Local { get; set; }
+
         public string DataEvento { get; set; }
 
         [Required(ErrorMessage = "Campo {0} é obrigatório!")]
@@ -21,6 +23,10 @@ namespace ProEventos.Application.Dto {
         [Required(ErrorMessage ="O campo {0} é obrigatório!")]
         [Phone(ErrorMessage ="O campo {0} está inválido!")]
         public string Telefone { get; set; }
+
+        public int UserId { get; set; }
+
+        public UserDto UserDto { get; set; }
 
         [EmailAddress(ErrorMessage = "Informe um {0} válido!")]
         [Required(ErrorMessage = "Campo {0} é obrigatório!")]

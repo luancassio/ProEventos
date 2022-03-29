@@ -7,26 +7,33 @@ using Microsoft.AspNetCore.Http;
 using ProEventos.Application.Dto;
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
+using ProEventos.API.Extensions;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ProEventos.API.Controllers {
 
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class EventoController : ControllerBase {
 
         public readonly IEventoService _eventoService;
         public readonly IWebHostEnvironment _hostEnvironment;
+        private readonly IAccountService _accountService;
 
-        public EventoController(IEventoService eventoService, IWebHostEnvironment hostEnvironment) {
+        public EventoController(IEventoService eventoService, 
+                                IWebHostEnvironment hostEnvironment,
+                                IAccountService accountService) {
+
             _eventoService = eventoService;
             _hostEnvironment = hostEnvironment;
-
+            _accountService = accountService;
         }
 
         [HttpGet]
         public async Task<IActionResult> GetAll() {
             try {
-                var eventos = await _eventoService.GetAllEventosAsync(true);
+                var eventos = await _eventoService.GetAllEventosAsync(User.GetUserId(), true);
                 if (eventos == null) {
                     return NoContent();
                 }
@@ -44,7 +51,7 @@ namespace ProEventos.API.Controllers {
         [HttpGet("{eventoId}")]
         public async Task<IActionResult> GetById(int eventoId) {
             try {
-                var evento = await _eventoService.GetEventoByIdAsync(eventoId, true);
+                var evento = await _eventoService.GetEventoByIdAsync(User.GetUserId(), eventoId, true);
                 if (evento == null) {
                     return NoContent();
                 }
@@ -61,7 +68,7 @@ namespace ProEventos.API.Controllers {
         [HttpGet("{tema}/tema")]
         public async Task<IActionResult> GetByTema(string tema) {
             try {
-                var evento = await _eventoService.GetAllEventosByTemaAsync(tema, true);
+                var evento = await _eventoService.GetAllEventosByTemaAsync(User.GetUserId(), tema, true);
                 if (evento == null) {
                     return NoContent();
                 }
@@ -78,7 +85,7 @@ namespace ProEventos.API.Controllers {
         [HttpPost]
         public async Task<IActionResult> Post(EventoDto model) {
             try {
-                var evento = await _eventoService.AddEvento(model);
+                var evento = await _eventoService.AddEvento(User.GetUserId(), model);
                 if (evento == null) {
                     return BadRequest("Erro ao tentar adicionar evento");
                 }
@@ -96,7 +103,7 @@ namespace ProEventos.API.Controllers {
         public async Task<IActionResult> UploadImage(int eventoId) {
             try {
 
-                var evento = await _eventoService.GetEventoByIdAsync(eventoId, true);
+                var evento = await _eventoService.GetEventoByIdAsync(User.GetUserId(), eventoId, true);
                 if (evento == null) {
                     return NoContent();
                 }
@@ -106,7 +113,7 @@ namespace ProEventos.API.Controllers {
                     DeleteImage(evento.ImageUrl);
                     evento.ImageUrl =  await SaveImage(file);
                 }
-                var eventoRetorno = await _eventoService.UpdateEvento(eventoId, evento);
+                var eventoRetorno = await _eventoService.UpdateEvento(User.GetUserId(), eventoId, evento);
                 return Ok(eventoRetorno);
 
             } catch (Exception ex) {
@@ -120,7 +127,7 @@ namespace ProEventos.API.Controllers {
         [HttpPut("{eventoId}")]
         public async Task<IActionResult> Put(int eventoId, EventoDto model) {
             try {
-                var evento = await _eventoService.UpdateEvento(eventoId, model);
+                var evento = await _eventoService.UpdateEvento(User.GetUserId(), eventoId, model);
                 if (evento == null) {
                     return BadRequest("Erro ao tentar Atualizar evento");
                 }
@@ -137,12 +144,12 @@ namespace ProEventos.API.Controllers {
         [HttpDelete("{eventoId}")]
         public async Task<IActionResult> Delete(int eventoId) {
             try {
-                var evento = await _eventoService.GetEventoByIdAsync(eventoId, true);
+                var evento = await _eventoService.GetEventoByIdAsync(User.GetUserId(), eventoId, true);
                 if (evento == null) {
                     return NoContent();
                 }
 
-                if (await _eventoService.DeleteEvento(eventoId)) {
+                if (await _eventoService.DeleteEvento(User.GetUserId(), eventoId)) {
                     DeleteImage(evento.ImageUrl);
                     return Ok(new { message = "Deletado" });
                 } else {

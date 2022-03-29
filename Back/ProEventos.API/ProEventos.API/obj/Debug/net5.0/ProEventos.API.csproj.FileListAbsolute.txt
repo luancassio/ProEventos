@@ -93,3 +93,10 @@ C:\Users\lcassio\Desktop\ProEventos\Back\ProEventos.API\ProEventos.API\bin\Debug
 C:\Users\lcassio\Desktop\ProEventos\Back\ProEventos.API\ProEventos.API\bin\Debug\net5.0\Microsoft.Extensions.Primitives.dll
 C:\Users\lcassio\Desktop\ProEventos\Back\ProEventos.API\ProEventos.API\bin\Debug\net5.0\System.Runtime.CompilerServices.Unsafe.dll
 C:\Users\lcassio\Desktop\ProEventos\Back\ProEventos.API\ProEventos.API\bin\Debug\net5.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\Users\lcassio\Desktop\ProEventos\Back\ProEventos.API\ProEventos.API\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\lcassio\Desktop\ProEventos\Back\ProEventos.API\ProEventos.API\bin\Debug\net5.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\lcassio\Desktop\ProEventos\Back\ProEventos.API\ProEventos.API\bin\Debug\net5.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\lcassio\Desktop\ProEventos\Back\ProEventos.API\ProEventos.API\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\lcassio\Desktop\ProEventos\Back\ProEventos.API\ProEventos.API\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\lcassio\Desktop\ProEventos\Back\ProEventos.API\ProEventos.API\bin\Debug\net5.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\lcassio\Desktop\ProEventos\Back\ProEventos.API\ProEventos.API\bin\Debug\net5.0\System.IdentityModel.Tokens.Jwt.dll
