@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -7,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using ProEventos.Application.Class;
 using ProEventos.Application.Dto;
@@ -18,6 +20,7 @@ using ProEventos.Persistence.Data;
 using ProEventos.Persistence.Interface;
 using System;
 using System.IO;
+using System.Text;
 using System.Text.Json.Serialization;
 
 namespace ProEventos.API {
@@ -46,6 +49,17 @@ namespace ProEventos.API {
               .AddRoleValidator<RoleValidator<Role>>()
               .AddEntityFrameworkStores<ProEventosContext>()
               .AddDefaultTokenProviders();
+
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(opt => {
+                    opt.TokenValidationParameters = new TokenValidationParameters {
+                        ValidateIssuerSigningKey = true,
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["TokenKey"])),
+                        ValidateIssuer =  false,
+                        ValidateAudience = false
+                        
+                    };
+                });
 
             // configuração para ignora os loops de relacionamento das classes
             services.AddControllers()
