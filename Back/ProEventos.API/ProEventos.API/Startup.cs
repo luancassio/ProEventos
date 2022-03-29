@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -8,12 +9,16 @@ using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using ProEventos.Application.Class;
+using ProEventos.Application.Dto;
 using ProEventos.Application.Interface;
+using ProEventos.Application.Services;
+using ProEventos.Domain.Identity;
 using ProEventos.Persistence.Class;
 using ProEventos.Persistence.Data;
 using ProEventos.Persistence.Interface;
 using System;
 using System.IO;
+using System.Text.Json.Serialization;
 
 namespace ProEventos.API {
     public class Startup {
@@ -27,10 +32,27 @@ namespace ProEventos.API {
         public void ConfigureServices(IServiceCollection services) {
 
             services.AddDbContext<ProEventosContext>(opt => opt.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
-            
+
+            services.AddIdentityCore<User>(opt => {
+                opt.Password.RequireDigit = false;
+                opt.Password.RequireNonAlphanumeric = false;
+                opt.Password.RequireLowercase = false;
+                opt.Password.RequireUppercase = false;
+                opt.Password.RequiredLength = 4;
+
+            }).AddRoles<Role>()
+              .AddRoleManager<RoleManager<Role>>()
+              .AddSignInManager<SignInManager<User>>()
+              .AddRoleValidator<RoleValidator<Role>>()
+              .AddEntityFrameworkStores<ProEventosContext>()
+              .AddDefaultTokenProviders();
+
             // configuração para ignora os loops de relacionamento das classes
-            services.AddControllers().AddNewtonsoftJson(x => x.SerializerSettings
-            .ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+            services.AddControllers()
+            .AddJsonOptions(opt => opt.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()),                .AddNewtonsoftJson(opt => opt.SerializerSettings
+            .ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore));
+
+
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             services.AddScoped<IGenericsPersistence, GenericsPersistence>();
@@ -43,6 +65,15 @@ namespace ProEventos.API {
 
             services.AddScoped<IPalestranteService, PalestranteService>();
             services.AddScoped<IPalestrantePersistence, PalestrantePersistence>();
+
+            services.AddScoped<IUserPersistence, UserPersistence>();
+
+            services.AddScoped<IAccountService, AccountService>();
+            services.AddScoped<ITokenService, TokenService>();
+
+
+
+
 
             services.AddCors();
             services.AddSwaggerGen(c => {
