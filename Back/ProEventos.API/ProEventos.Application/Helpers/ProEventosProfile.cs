@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using ProEventos.Application.Class.Dto;
+using ProEventos.Application.Dto;
 using ProEventos.Domain.Moldels;
 
 namespace ProEventos.Application.Helpers {

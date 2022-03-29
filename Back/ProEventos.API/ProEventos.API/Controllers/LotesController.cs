@@ -3,7 +3,7 @@ using System;
 using ProEventos.Application.Interface;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
-using ProEventos.Application.Class.Dto;
+using ProEventos.Application.Dto;
 
 namespace ProEventos.API.Controllers {
 

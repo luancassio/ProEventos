@@ -1,13 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using ProEventos.Persistence.Data;
-using ProEventos.Domain.Moldels;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using ProEventos.Application.Interface;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
-using ProEventos.Application.Class.Dto;
+using ProEventos.Application.Dto;
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
 
