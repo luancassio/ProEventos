@@ -2,6 +2,10 @@ import { AfterViewInit, Component, ElementRef, OnInit, ViewChildren } from '@ang
 import { FormBuilder, FormControl, FormControlName, FormGroup, Validators } from '@angular/forms';
 import { FormBaseComponent } from 'src/app/shared/components/form-base/form-base.component';
 import { CustomValidators } from 'ng2-validation';
+import { User } from 'src/app/core/models/identity/User';
+import { AccountService } from 'src/app/services/account.service';
+import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registration',
@@ -12,10 +16,11 @@ export class RegistrationComponent extends FormBaseComponent implements OnInit, 
 
   @ViewChildren(FormControlName, { read: ElementRef }) formInputElements!: ElementRef[];
 
+  user = {} as User;
 
   registerForm!: FormGroup;
 
-  constructor(private fb: FormBuilder) { 
+  constructor(private fb: FormBuilder, private accountService: AccountService, private router: Router) { 
     super();
 
     this.validationMessages = {
@@ -60,10 +65,10 @@ export class RegistrationComponent extends FormBaseComponent implements OnInit, 
     [Validators.required, CustomValidators.rangeLength([6, 15]),  CustomValidators.equalTo(password)]);
 
     this.registerForm = this.fb.group({
-      firstName: ['', [Validators.required]],
-      lastName: ['', [Validators.required]],
+      primeiroNome: ['', [Validators.required]],
+      ultimoNome: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
-      userName: ['', [Validators.required, Validators.maxLength(15)]],
+      username: ['', [Validators.required, Validators.maxLength(15)]],
       password: password,
       confirmPassword: confirmPassword
 
@@ -75,6 +80,18 @@ export class RegistrationComponent extends FormBaseComponent implements OnInit, 
   }
   public resetForm(): void{
     this.registerForm.reset();
+  }
+
+  register():void{
+    this.user = {...this.registerForm.value};
+    this.accountService.register(this.user).subscribe(() =>{
+        this.router.navigateByUrl('/dashboard');
+      Swal.fire('Sucesso','Usuário cadastrado com sucesso!', 'success');
+
+    }, (err) => {
+      Swal.fire('Erro','Erro ao cadastrar seus dados, tente novamente', 'error');
+      console.error(err);
+    });
   }
 
 }

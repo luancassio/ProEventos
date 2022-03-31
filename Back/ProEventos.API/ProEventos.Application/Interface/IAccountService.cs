@@ -9,7 +9,7 @@ namespace ProEventos.Application.Interface {
 
         Task<SignInResult> CheckUserPasswordAsync(UserUpdateDto userUpdateDto, string passwaord);
 
-        Task<UserDto> CreateAccountAsync(UserDto userDto);
+        Task<UserUpdateDto> CreateAccountAsync(UserDto userDto);
 
         Task<UserUpdateDto> UpdateAccount(UserUpdateDto userUpdateDto);
 

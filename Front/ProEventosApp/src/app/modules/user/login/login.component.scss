@@ -1,8 +1,14 @@
+#backgroud-form{
+  // opacity: .9!important;
+  background-color: rgba(46, 46, 46, 0) !important;
+}
 .form-signin {
   width: 100%;
   max-width: 330px;
   padding: 15px;
   margin: 0 auto;
+  // background-color: rgb(167, 35, 11) ;
+
 
   i {
     font-size: 50px;
@@ -25,10 +31,12 @@
   }
 
   input[type="email"] {
-    margin-bottom: -1px;
+    margin-bottom: 5px;
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
     // background-color: #e8f8ff;
+  background-color: rgba(255, 255, 255, 0.05) !important;
+
 }
 
 input[type="password"] {
@@ -36,5 +44,33 @@ input[type="password"] {
     border-top-left-radius: 0;
     border-top-right-radius: 0;
     // background-color: #e8f8ff;
+  background-color: rgba(255, 255, 255, 0.05) !important;
+
   }
 }
+.btn-info{
+  border-radius: 50px;
+}
+
+#backgroud {
+  background-color: #2E2E2E;
+
+}
+// #backgroud {
+// 	background: linear-gradient(-45deg, #051937, #044269, #00719a, #00a4c6, #12d9eb);
+// 	background-size: 400% 400%;
+// 	animation: gradient 15s ease infinite;
+// 	height: 100vh;
+// }
+
+// @keyframes gradient {
+// 	0% {
+// 		background-position: 0% 50%;
+// 	}
+// 	50% {
+// 		background-position: 100% 50%;
+// 	}
+// 	100% {
+// 		background-position: 0% 50%;
+// 	}
+// }

@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Evento } from '../core/models/interface/IEvento';
@@ -9,6 +9,7 @@ import { environment } from 'src/environments/environment';
 export class EventoService {
 
   apiURL= environment.apiURL+'api/Evento';
+
   constructor(private http: HttpClient) {}
   
   public getEventos(): Observable<Evento[]>{

@@ -47,7 +47,11 @@ namespace ProEventos.API.Controllers {
                 var user = await _accountService.CreateAccountAsync(userDto);
 
                 if (user != null) {
-                    return Ok(user);
+                    return Ok(new {
+                        Username = user.Username,
+                        PrimeiroNome = user.PrimeiroNome,
+                        Token = _tokenService.CreateToken(user).Result
+                    });
                 }
                 return BadRequest("Usuário não criado, tente novamente mais tarde!");
 

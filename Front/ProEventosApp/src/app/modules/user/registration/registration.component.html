@@ -1,93 +1,103 @@
-<div class="row mt-4">
+<div class="d-flex align-items-center vh-100 "  id="backgroud">
+    <div class="row mx-auto">
+        <div class="col-6">
+            <div class="text-center bg-white rounded p-5 my-5" id="imagem">
+                    <i class="fa fa-users mb-2" style="font-size: 40px;"></i>
+                    <h1 class="h2 font-weight-normal text-muted">Pro-Eventos</h1>
+                    <label for="username" class="sr-only">Usuário</label>
+                    
+                    <img src="../../../../assets/imagem/online-registration.jpg" class="my-4" alt="" width="350px">
+                    <footer class="text-dark" style="font-weight: 600; font-size: 8pt;">
+                        desenvolvido por .:: Luan Cássio ::.
+                    </footer>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-12">
+            <!-- <h1 class="h2 font-weight-normal text-muted">Cadastro de Usuário </h1> -->
 
-	<div class="col-md-6 d-none d-md-block" style="height: 450px;">
-		<div class="text-center col-md-12 my-auto side-heder">
-			<h3 class="pt-3">Cadastro de Usuário</h3>
-			<img src="../../../../assets/imagem/registerImage.png" class="my-4" alt="" width="400px">
-		</div>
-	</div>
+            <div class=" text-muted bg-white rounded p-5 my-5" id="backgroud-form">
+                <div class="pb-2 d-block ">
+                    <h4 class="border-bottom text-muted text-center">Cadastro de Usuário</h4>
+                </div>
+                <form class="p-1" [formGroup]="registerForm" (ngSubmit)="register()">
+         
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <label>Primeiro Nome</label>
+                            <input type="text" formControlName="primeiroNome" class="form-control" placeholder="Primeiro nome" [ngClass]="{'is-invalid': displayMessage.primeiroNome }"/>
+                            <div *ngIf="displayMessage.primeiroNome" class="invalid-feedback">
+                                <span [innerHTML]="displayMessage.primeiroNome"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <label>Último nome</label>
+                            <input type="text" formControlName="ultimoNome" class="form-control" placeholder="Último nome" [ngClass]="{'is-invalid': displayMessage.ultimoNome }"/>
+                            <div *ngIf="displayMessage.ultimoNome" class="invalid-feedback">
+                                <span [innerHTML]="displayMessage.ultimoNome"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-7">
+                            <label>Email:</label>
+                            <input type="email" formControlName="email" class="form-control" placeholder="seu Email" [ngClass]="{'is-invalid': displayMessage.email }"/>
+                            <div *ngIf="displayMessage.email" class="invalid-feedback">
+                                <span [innerHTML]="displayMessage.email"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-5">
+                            <label>Usuario:</label>
+                            <input type="text" formControlName="username" class="form-control" placeholder="nome de Usuário" [ngClass]="{'is-invalid': displayMessage.username }"/>
+                            <div *ngIf="displayMessage.username" class="invalid-feedback">
+                                <span [innerHTML]="displayMessage.username"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                            <label for="">Senha:</label>
+                            <input class="form-control" formControlName="password" type="password" placeholder="Digite uma Senha" [ngClass]="{'is-invalid': displayMessage.password }"/>
+                            <div *ngIf="displayMessage.password" class="invalid-feedback">
+                                <span [innerHTML]="displayMessage.password"></span>
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label for="">Confirmar Senha:</label>
+                            <input class="form-control" formControlName="confirmPassword" type="password" placeholder="Confirme a Senha" [ngClass]="{'is-invalid': displayMessage.confirmPassword }"/>
+                            <div *ngIf="displayMessage.confirmPassword" class="invalid-feedback">
+                                <span [innerHTML]="displayMessage.confirmPassword"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row p-1 mb-3">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customCheck1">
+                            <div *ngIf="displayMessage.tema" class="invalid-feedback">
+                                <span [innerHTML]="displayMessage.tema"></span>
+                            </div>
+                            <label class="custom-control-label">  Eu concordo com os <a href="#">Termos de Uso</a>.</label>
+                        </div>
+                    </div>
+                    <div class="form-row text-center">
+                        <div class="form-group col-12">
+                            <div class="d-grid gap-2">
+                                <button class="btn btn-success" [disabled]="!registerForm.valid" type="submit">Registrar</button>
+                              </div>
+                        </div>
+                    </div>
+                    <div class="form-row text-center">
+                        <div class="form-group col-12">
+                            <a class="btn btn-link btn-block text-muted" [routerLink]="'/user/login'">
+                                Já sou Cadastrado
+                            </a>
+                        </div>
+                    </div>
+                </form>
+        
+            </div>
+        </div>
+    </div>
+
+   
     
-
-	<div class="col-md-6">
-		<form class="p-1" [formGroup]="registerForm">
-            <div class="pb-2 d-block d-md-none">
-                <h3 class="border-bottom">Cadastro de Usuário</h3>
-            </div>
-            <div class="row">
-                <div class="col-sm-6">
-                    <label>Primeiro Nome</label>
-                    <input type="text" formControlName="firstName" class="form-control" placeholder="Insira o Primeiro nome" [ngClass]="{'is-invalid': displayMessage.firstName }"/>
-                    <div *ngIf="displayMessage.firstName" class="invalid-feedback">
-                        <span [innerHTML]="displayMessage.firstName"></span>
-                    </div>
-                </div>
-                <div class="col-sm-6">
-                    <label>Último nome</label>
-                    <input type="text" formControlName="lastName" class="form-control" placeholder="Insira o Último nome" [ngClass]="{'is-invalid': displayMessage.lastName }"/>
-                    <div *ngIf="displayMessage.lastName" class="invalid-feedback">
-                        <span [innerHTML]="displayMessage.lastName"></span>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-8">
-                    <label>Email:</label>
-                    <input type="email" formControlName="email" class="form-control" placeholder="Insira o seu Email" [ngClass]="{'is-invalid': displayMessage.email }"/>
-                    <div *ngIf="displayMessage.email" class="invalid-feedback">
-                        <span [innerHTML]="displayMessage.email"></span>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <label>Usuario:</label>
-                    <input type="text" formControlName="userName" class="form-control" placeholder="Insira o nome de Usuário" [ngClass]="{'is-invalid': displayMessage.userName }"/>
-                    <div *ngIf="displayMessage.userName" class="invalid-feedback">
-                        <span [innerHTML]="displayMessage.userName"></span>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="form-group col-sm-6">
-                    <label for="">Senha:</label>
-                    <input class="form-control" formControlName="password" type="password" placeholder="Digite uma Senha" [ngClass]="{'is-invalid': displayMessage.password }"/>
-                    <div *ngIf="displayMessage.password" class="invalid-feedback">
-                        <span [innerHTML]="displayMessage.password"></span>
-                    </div>
-                </div>
-                <div class="form-group col-sm-6">
-                    <label for="">Confirmar Senha:</label>
-                    <input class="form-control" formControlName="confirmPassword" type="password" placeholder="Confirme a Senha" [ngClass]="{'is-invalid': displayMessage.confirmPassword }"/>
-                    <div *ngIf="displayMessage.confirmPassword" class="invalid-feedback">
-                        <span [innerHTML]="displayMessage.confirmPassword"></span>
-                    </div>
-                </div>
-            </div>
-            <div class="form-row p-1 mb-3">
-                <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="customCheck1">
-                    <div *ngIf="displayMessage.tema" class="invalid-feedback">
-                        <span [innerHTML]="displayMessage.tema"></span>
-                    </div>
-                    <label class="custom-control-label">  Eu concordo com os <a href="#">Termos de Uso</a>.</label>
-                </div>
-            </div>
-            <div class="form-row text-center">
-                <div class="form-group col-12">
-                    <!-- <button class="btn btn-success btn-block px-5">
-                        Registar
-                    </button> -->
-                    <div class="d-grid gap-2">
-                        <button class="btn btn-success" [disabled]="!registerForm.valid">Registrar</button>
-                      </div>
-                </div>
-            </div>
-            <div class="form-row text-center">
-                <div class="form-group col-12">
-                    <a class="btn btn-link btn-block">
-                        Já sou Cadastrado
-                    </a>
-                </div>
-            </div>
-        </form>
-
-	</div>
 </div>
