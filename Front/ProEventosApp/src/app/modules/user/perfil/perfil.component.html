@@ -5,7 +5,7 @@
     [iconClass]="'fa-solid fa-user'">
 </app-titulo>
 <div class="card rounded shadow-sm">
-    <form [formGroup]="perfilForm">
+    <form [formGroup]="perfilForm" (ngSubmit)="atualizarUsuario()">
         <div class="row p-3">
             <div class="col-lg-3 pt-1">
                 <div class="card mb-3">
@@ -18,23 +18,22 @@
                         </a>
                     </div>
                     <div class="card-body">
-                        <div class="h4 text-center mb-3">@UserName</div>
-                        <div class="h7 text-bold pb-1"><b>Nome:</b> Miracles Lee Cross</div>
+                        <div class="h4 text-center mb-3">@{{userUpdate.username}}</div>
+                        <div class="h7 text-bold pb-1"><b>Nome:</b> {{userUpdate.primeiroNome +' '+ userUpdate.ultimoNome}}</div>
                         <div class="h7">
-                            Developer of web applications, JavaScript, PHP, Java, C#, Python, Ruby, Java, Node.js,
-                            etc.
+                            {{userUpdate.descricao}}
                         </div>
                     </div>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">
                             <div class="row">
                                 <div class="col-6 text-center border-right">
-                                    <div class="h5">1342</div>
-                                    <div class="h6 text-muted">Eventos Ministrados</div>
+                                    <div class="h5">0</div>
+                                    <div class="h6 text-muted">Meus Eventos Criados</div>
                                 </div>
                                 <div class="col-6 text-center">
-                                    <div class="h5">1342</div>
-                                    <div class="h6 text-muted">Eventos Participados</div>
+                                    <div class="h5">0</div>
+                                    <div class="h6 text-muted">Eventos como Participante</div>
                                 </div>
                             </div>
                         </li>
@@ -49,34 +48,34 @@
                     </div>
                     <div class="form-group col-3">
                         <label>Título</label>
-                        <select class="form-control" formControlName="title" [ngClass]="{'is-invalid': displayMessage.title }">
+                        <select class="form-control" formControlName="titulo" [ngClass]="{'is-invalid': displayMessage.titulo }">
                             <option value=""></option>
-                            <option value="0">Não Quero</option>
-                            <option value="Senhorita">Tecnólogo(a)</option>
-                            <option value="Senhorita">Bacharel</option>
-                            <option value="Senhorita">Especialista</option>
-                            <option value="Senhorita">Pós Graduado(a)</option>
-                            <option value="Senhorita">Mestre</option>
-                            <option value="Senhorita">Doutor(a)</option>
-                            <option value="Senhorita">Pós Doc</option>
+                            <option value="NaoInformado">Não Informado</option>
+                            <option value="Tecnologo">Tecnólogo(a)</option>
+                            <option value="Bacharel">Bacharel</option>
+                            <option value="Especialista">Especialista</option>
+                            <option value="PosGraduado">Pós Graduado(a)</option>
+                            <option value="Mestrado">Mestre</option>
+                            <option value="Doutorado">Doutor(a)</option>
+                            <option value="PosDoutorado">Pós Doc</option>
                         </select>
-                        <div *ngIf="displayMessage.title" class="invalid-feedback">
-                            <span [innerHTML]="displayMessage.title"></span>
+                        <div *ngIf="displayMessage.titulo" class="invalid-feedback">
+                            <span [innerHTML]="displayMessage.titulo"></span>
                         </div>
                     </div>
                     <div class="form-group col">
                         <label>Primeiro Nome</label>
-                        <input type="text" class="form-control" formControlName="firstName" [ngClass]="{'is-invalid': displayMessage.firstName }"/>
-                        <div *ngIf="displayMessage.firstName" class="invalid-feedback">
-                            <span [innerHTML]="displayMessage.firstName"></span>
+                        <input type="text" class="form-control" formControlName="primeiroNome" [ngClass]="{'is-invalid': displayMessage.primeiroNome }"/>
+                        <div *ngIf="displayMessage.primeiroNome" class="invalid-feedback">
+                            <span [innerHTML]="displayMessage.primeiroNome"></span>
                         </div>
                         
                     </div>
                     <div class="form-group col">
                         <label>Último nome</label>
-                        <input type="text" class="form-control" formControlName="lastName" [ngClass]="{'is-invalid': displayMessage.lastName }"/>
-                        <div *ngIf="displayMessage.lastName" class="invalid-feedback">
-                            <span [innerHTML]="displayMessage.lastName"></span>
+                        <input type="text" class="form-control" formControlName="ultimoNome" [ngClass]="{'is-invalid': displayMessage.ultimoNome }"/>
+                        <div *ngIf="displayMessage.ultimoNome" class="invalid-feedback">
+                            <span [innerHTML]="displayMessage.ultimoNome"></span>
                         </div>
                     </div>
                 </div>
@@ -90,29 +89,30 @@
                     </div>
                     <div class="form-group col-sm-4">
                         <label>Telefone</label>
-                        <input type="text" class="form-control" formControlName="telephone" [ngClass]="{'is-invalid': displayMessage.telephone }"/>
-                        <div *ngIf="displayMessage.telephone" class="invalid-feedback">
-                            <span [innerHTML]="displayMessage.telephone"></span>
+                        <input type="text" class="form-control" formControlName="phoneNumber" [ngClass]="{'is-invalid': displayMessage.phoneNumber }"/>
+                        <div *ngIf="displayMessage.phoneNumber" class="invalid-feedback">
+                            <span [innerHTML]="displayMessage.phoneNumber"></span>
                         </div>
                     </div>
                     <div class="form-group col-sm">
                         <label>Função</label>
-                        <select class="form-control" formControlName="funcOptions" [ngClass]="{'is-invalid': displayMessage.funcOptions }">
+                        <select class="form-control" formControlName="funcao" [ngClass]="{'is-invalid': displayMessage.funcao }">
                             <option value=""></option>
+                            <option value="NaoInformado">Não informado</option>
                             <option value="Participante">Participante</option>
                             <option value="Palestrante">Palestrante</option>
                         </select>
-                        <div *ngIf="displayMessage.funcOptions" class="invalid-feedback">
-                            <span [innerHTML]="displayMessage.funcOptions"></span>
+                        <div *ngIf="displayMessage.funcao" class="invalid-feedback">
+                            <span [innerHTML]="displayMessage.funcao"></span>
                         </div>
                     </div>
-                    <form-group class="col-12">
+                    <div class="form-group col-12">
                         <label>Descrição</label>
-                        <input type="text" class="form-control" formControlName="description" [ngClass]="{'is-invalid': displayMessage.description }"/>
-                        <div *ngIf="displayMessage.description" class="invalid-feedback">
-                            <span [innerHTML]="displayMessage.description"></span>
+                        <input type="text" class="form-control" formControlName="descricao" [ngClass]="{'is-invalid': displayMessage.descricao }"/>
+                        <div *ngIf="displayMessage.descricao" class="invalid-feedback">
+                            <span [innerHTML]="displayMessage.descricao"></span>
                         </div>
-                    </form-group>
+                    </div>
                 </div>
                 <div>
                     <h4 class="pt-3 border-bottom">Mudar Senha</h4>
@@ -141,9 +141,11 @@
                 <button class="btn btn-outline-danger mr-auto border" (click)="resetForm()">
                     Cancelar Alteração
                 </button>
-                <button class="btn btn-success" [disabled]="!perfilForm.valid">
-                    <span class="spinner-border spinner-border-sm mr-1"></span>
-                    Salvar Perfil
+
+                <button class="btn btn-info" type="submit" [disabled]="!perfilForm.valid" id="btnLogar">
+                    {{loading ? 'Salvar perfil' : 'Salvando...'}}
+                    
+                    <span *ngIf="!loading" class="spinner-border spinner-border-sm mr-1" role="status" aria-hidden="true"></span>
                 </button>
             </div>
         </div>

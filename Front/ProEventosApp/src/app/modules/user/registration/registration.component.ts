@@ -17,6 +17,8 @@ export class RegistrationComponent extends FormBaseComponent implements OnInit, 
   @ViewChildren(FormControlName, { read: ElementRef }) formInputElements!: ElementRef[];
 
   user = {} as User;
+  public loading = true;
+
 
   registerForm!: FormGroup;
 
@@ -83,14 +85,19 @@ export class RegistrationComponent extends FormBaseComponent implements OnInit, 
   }
 
   register():void{
+    this.loading = false;
     this.user = {...this.registerForm.value};
     this.accountService.register(this.user).subscribe(() =>{
-        this.router.navigateByUrl('/dashboard');
+      this.router.navigateByUrl('/dashboard');
       Swal.fire('Sucesso','Usuário cadastrado com sucesso!', 'success');
+      this.loading = true;
+
 
     }, (err) => {
       Swal.fire('Erro','Erro ao cadastrar seus dados, tente novamente', 'error');
       console.error(err);
+      this.loading = true;
+
     });
   }
 

@@ -81,7 +81,10 @@
                     <div class="form-row text-center">
                         <div class="form-group col-12">
                             <div class="d-grid gap-2">
-                                <button class="btn btn-success" [disabled]="!registerForm.valid" type="submit">Registrar</button>
+                                <button class="btn btn-info" type="submit" [disabled]="!registerForm.valid" id="btnLogar">
+                                    {{loading ? 'Registrar' : 'Registrando usuário...'}}
+                                    <span *ngIf="!loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                </button>
                               </div>
                         </div>
                     </div>
