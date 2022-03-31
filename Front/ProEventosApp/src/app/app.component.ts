@@ -19,7 +19,7 @@ export class AppComponent implements OnInit {
     let user = {} as User;
 
     if (localStorage.getItem('user')) {
-      user =  JSON.parse(localStorage.getItem('user') ?? '{}');
+      user = JSON.parse(localStorage.getItem('user') ?? '{}');
     }else{
       user = null;
     }
