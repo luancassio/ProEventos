@@ -1,0 +1,19 @@
+#background-perfil{
+  background-color: #383838c5;
+  
+}
+input, select{
+    background-color: #383838c5;
+    color: rgb(167, 167, 167);
+}
+.btn{
+    border-radius: 50px;
+}
+#card-informacoes{
+    background-color: #424242c5;
+    .list-group-flush>.list-group-item:last-child {
+        
+        background-color: #494949c5;
+    }
+
+}
